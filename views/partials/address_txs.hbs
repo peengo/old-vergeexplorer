@@ -1,0 +1,37 @@
+{{#each txs}}
+<tr class="table-active" {{#if ../all}}data-all="{{ ../all }}" {{/if}}>
+    <td class="text-center">
+        <span class="timestamp text-muted d-none d-md-inline">{{ time }}</span>
+        <span class="ago text-muted font-weight-bold small d-inline d-md-none">{{ time }}</span>
+    </td>
+    <td>
+        <a href="/tx/{{ txid }}" class="text-info d-none d-lg-inline">{{ txid }}</a>
+        <a href="/tx/{{ txid }}" class="text-info font-weight-bold short small d-inline d-lg-none">{{ txid }}</a>
+    </td>
+    {{#if vin}}
+    <td class="text-danger text-right">
+        <i class="fa fa-minus-square ml-1 d-none d-md-inline float-left mt-1"></i>
+        <span class="amount38 d-none d-md-inline" data-stealth="1">{{ value }}</span>
+        <span class="amount38 d-inline d-md-none small font-weight-bold" data-stealth="1">-{{ value }}</span>
+    </td>
+    {{else}} {{#if both}}
+    <td class="text-info text-right">
+        {{#if negative}}
+        <i class="fa fa-minus-square ml-1 d-none d-md-inline float-left mt-1"></i>
+        <span class="amount38 d-none d-md-inline" data-stealth="1">{{ value }}</span>
+        <span class="amount38 d-inline d-md-none small font-weight-bold" data-stealth="1">-{{ value }}</span>
+        {{else}}
+        <i class="fa fa-plus-square ml-1 d-none d-md-inline float-left mt-1"></i>
+        <span class="amount38 d-none d-md-inline" data-stealth="1">{{ value }}</span>
+        <span class="amount38 d-inline d-md-none small font-weight-bold" data-stealth="1">{{ value }}</span>
+        {{/if}}
+    </td>
+    {{else}}
+    <td class="text-success text-right">
+        <i class="fa fa-plus-square ml-1 d-none d-md-inline float-left mt-1"></i>
+        <span class="amount38 d-none d-md-inline" data-stealth="1">{{ value }}</span>
+        <span class="amount38 d-inline d-md-none small font-weight-bold" data-stealth="1">{{ value }}</span>
+    </td>
+    {{/if}} {{/if}}
+</tr>
+{{/each}}

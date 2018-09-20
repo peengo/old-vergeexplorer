@@ -1,0 +1,105 @@
+<div class="row" id="address">
+    <div class="col">
+        <div class="row">
+            <div class="col-12 p-0">
+                <h4 class="mb-3 text-center">
+                    <span class="badge badge-secondary">
+                        <i class="fa fa-address-card text-info mr-2"></i>{{$.ADDRESS}}</span>
+                </h4>
+            </div>
+            <div class="col-12 p-0">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col">
+                                <i class="fa fa-wallet text-warning mr-2 mb-1"></i>{{$.WALLET_ADDRESS}}
+                                <p class="text-wrap m-1">
+                                    <span class="d-none d-md-inline text-info text-wrap" id="address_hash">{{ data.address }}</span>
+                                    <span class="d-inline d-md-none small font-weight-bold text-info text-wrap">{{ data.address }}</span>
+                                </p>
+                                <div class="row mt-4">
+                                    <div class="col pt-3">
+                                        <i class="fa fa-arrow-right d-none d-md-inline"></i>
+                                        <i class="fa fa-wallet mr-1 d-none d-md-inline"></i>
+                                        <p class="d-none d-md-inline">{{$.TOTAL_RECEIVED}}</p>
+                                        <p class="d-none d-md-block text-success m-1 amount38">{{ data.received }}</p>
+                                        <p class="d-inline d-md-none small font-weight-bold">{{$.TOTAL_RECEIVED}}</p>
+                                        <p class="d-block d-md-none small font-weight-bold text-success m-1 amount38">{{ data.received }}</p>
+                                    </div>
+                                    <div class="col pt-3">
+                                        <i class="fa fa-wallet d-none d-md-inline"></i>
+                                        <i class="fa fa-long-arrow-alt-right mr-1 d-none d-md-inline"></i>
+                                        <p class="d-none d-md-inline">{{$.TOTAL_SENT}}</p>
+                                        <p class="d-none d-md-block text-danger m-1 amount38">{{ data.sent }}</p>
+                                        <p class="d-inline d-md-none small font-weight-bold">{{$.TOTAL_SENT}}</p>
+                                        <p class="d-block d-md-none small font-weight-bold text-danger m-1 amount38">{{ data.sent }}</p>
+                                    </div>
+                                    <div class="col pt-3">
+                                        <i class="fa fa-wallet mr-1 d-none d-md-inline"></i>
+                                        <p class="d-none d-md-inline">{{$.BALANCE}}</p>
+                                        <p class="d-none d-md-block m-1 amount38">{{ data.balance }}</p>
+                                        <p class="d-inline d-md-none small font-weight-bold">{{$.BALANCE}}</p>
+                                        <p class="d-block d-md-none small font-weight-bold m-1 amount38">{{ data.balance }}</p>
+                                    </div>
+                                    <div class="col pt-3">
+                                        <i class="fa fa-dollar-sign mr-1 d-none d-md-inline"></i>
+                                        <p class="d-none d-md-inline">{{$.VALUE}}</p>
+                                        <p class="d-none d-md-block m-1 value text-warning" data-value="{{ data.balance }}">
+                                            <i class="fas fa-spinner fa-spin text-muted"></i>
+                                        </p>
+                                        <p class="d-inline d-md-none small font-weight-bold">{{$.VALUE}}</p>
+                                        <p class="d-block d-md-none small font-weight-bold m-1 value text-warning" data-value="{{ data.balance }}">
+                                            <i class="fas fa-spinner fa-spin text-muted"></i>
+                                        </p>
+                                    </div>
+                                    <div class="col p-3">
+                                         <img alt="qrcode" src="https://chart.googleapis.com/chart?cht=qr&chl={{ data.address }}&chs=128x128&chld=L%7C0">
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- <div class="col mx-2 mt-2 mb-2">
+                                <img alt="qrcode" src="https://chart.googleapis.com/chart?cht=qr&chl={{ data.address }}&chs=128x128&chld=L%7C0">
+                            </div> --}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-5" id="txs">
+    <div class="col p-0">
+        <h4 class="mb-1 text-center">
+            <span class="badge badge-secondary mr-2">
+                <i class="fa fa-money-check-alt text-info mr-2"></i>{{$.TXS}}</span>
+            <span class="badge badge-secondary">{{ count }}</span>
+            <button id="address_txs_refresh_btn" class="btn btn-link float-right" title="{{$.REFRESH_TXS}}">
+                <i class="fa fa-sync-alt fa-lg text-warning"></i>
+            </button>
+        </h4>
+        <table class="table mt-3" id="address_txs">
+            <thead class="sticky-top bg-secondary">
+                <tr>
+                    <th class="text-center">
+                        <i class="fa fa-clock mr-1 d-none d-md-inline"></i>{{$.TIME}}</th>
+                    <th>
+                        <i class="fa fa-hashtag mr-1 d-none d-md-inline"></i>{{$.TX_ID}}</th>
+                    <th class="text-right">{{$.AMOUNT_CURRENCY}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- AJAX ADDRESS TXS -->
+            </tbody>
+        </table>
+        <p class="text-center">
+            <i class="fas fa-spinner fa-spin fa-3x text-muted m-3" id="address_txs_loading"></i>
+        </p>
+        <p class="text-muted small ml-2 mb-0" id="txs_counter">
+            <span></span>/{{ count }}</p>
+        <p class="text-center">
+            <button class="btn btn-primary px-5 py-1" type="button" id="address_txs_more_btn">
+                <i class="fa fa-angle-down fa-lg"></i>
+            </button>
+        </p>
+    </div>
+</div>

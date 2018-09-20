@@ -1,0 +1,27 @@
+{{#each addresses}}
+<tr>
+    <td class="text-muted">
+        <span class="d-none d-sm-inline">{{ index }}</span>
+        <small class="d-inline d-sm-none">{{ index }}</small>
+    </td>
+    <td>
+        <a class="address d-none d-sm-inline" href="/address/{{ address }}">{{ address }}</a>
+        <a class="address small font-weight-bold short d-inline d-sm-none" href="/address/{{ address }}">{{ address }}</a>
+    </td>
+    <td>
+        <span class="d-none d-sm-inline locale" data-value="{{ balance }}">{{ balance }}</span>
+        <small class="font-weight-bold d-inline d-sm-none locale" data-value="{{ balance }}">{{ balance }}</small>
+    </td>
+    <td class="d-none d-lg-table-cell value text-warning" data-value="{{ balance }}">
+        <i class="fas fa-spinner fa-spin text-muted"></i>
+    </td>
+    <td class="text-info">
+        <span class="d-none d-sm-inline percentage" data-value="{{ balance }}">
+            <i class="fas fa-spinner fa-spin text-muted"></i>
+        </span>
+        <small class="font-weight-bold d-inline d-sm-none percentage" data-value="{{ balance }}">
+            <i class="fas fa-spinner fa-spin text-muted"></i>
+        </small>
+    </td>
+</tr>
+{{/each}}

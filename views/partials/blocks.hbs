@@ -1,0 +1,13 @@
+{{#each latestBlocks}}
+<tr>
+    <td>
+        <i class="fa fa-cube text-success mr-1 d-none d-md-inline"></i>
+        <a href="/block/{{ hash }}">{{ height }}</a>
+    </td>
+    <td class="d-none d-sm-table-cell small font-weight-bold">
+        <a href="/block/{{ hash }}" class="short">{{ hash }}</a>
+    </td>
+    <td class="text-center font-weight-bold">{{ tx.length }}</td>
+    <td class="ago text-muted font-weight-bold">{{ time }}</td>
+</tr>
+{{/each}}

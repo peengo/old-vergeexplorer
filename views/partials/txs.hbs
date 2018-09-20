@@ -1,0 +1,15 @@
+{{#each latestTxs}}
+<tr>
+    <td>
+        <span class="small font-weight-bold">
+            <i class="fa fa-money-check text-info mr-1 d-none d-md-inline"></i>
+            <a href="/tx/{{ txid }}" class="font-weight-bold short text-info">{{ txid }}</a>
+        </span>
+    </td>
+    <td class="d-none d-sm-table-cell small font-weight-bold">
+        <a href="/block/{{ blockhash }}">{{ height }}</a>
+    </td>
+    <td class="small font-weight-bold">{{ amountOut }}</td>
+    <td class="small font-weight-bold ago text-muted">{{ time }}</td>
+</tr>
+{{/each}}

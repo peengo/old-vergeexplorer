@@ -1,0 +1,85 @@
+<div class="row" id="tx">
+    <div class="col">
+        <div class="row">
+            <div class="col text-center">
+                <h4 class="mb-1">
+                    <span class="badge badge-secondary mr-2">
+                        <i class="fa fa-money-check-alt text-info mr-2"></i>{{$.TX}}</span>
+                    <a href="/api/tx/{{ tx.txid }}" class="btn text-info float-right" role="button" title="{{$.JSON}}">
+                        <i class="fa fa-file-alt mr-1"></i>
+                    </a>
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col p-0">
+                <ul class="list-group mt-2">
+                    <li class="list-group-item">
+                        <h5 class="d-inline-block mr-1">
+                            <span class="badge badge-secondary">
+                                <i class="fa fa-hashtag mr-2"></i>{{$.TX_ID}}</span>
+                        </h5>
+                        <p class="text-info text-wrap m-0 mt-1" id="txid">{{ tx.txid}}</p>
+                    </li>
+                    <li class="list-group-item confirmations">
+                        <i class="fa fa-check mr-2"></i>{{$.CONFIRMATIONS}}
+                        <i class="fas fa-cog fa-lg text-muted confirmations_refresh mx-2"></i>
+                        <span>{{ tx.confirmations }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-clock mr-2"></i>{{$.TIME}}
+                        <span class="timestamp text-muted ml-3">{{ tx.time }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-cube mr-2"></i>{{$.BLOCK_HASH}}
+                        <p class="text-wrap m-0 mt-1">
+                            <a href="/block/{{ tx.blockhash }}" id="block_hash">{{ tx.blockhash }}</a>
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa fa-long-arrow-alt-up mr-2"></i>{{$.BLOCK_HEIGHT}}
+                        <span class="text-muted ml-3">{{ tx.height }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-3" id="txs">
+    <div class="col">
+        <h4 class="mb-1 mt-5 text-center">
+            <span class="badge badge-secondary mr-2">
+                <i class="fa fa-sitemap text-info mr-2"></i>{{$.INPUT_ADDRESSES}}</span>
+        </h4>
+        <ul class="list-group mt-3" id="tx_inputs">
+            <!-- AJAX INPUT ADDRESSES -->
+        </ul>
+        <p class="text-center">
+            <i class="fas fa-spinner fa-spin fa-3x text-muted m-3" id="tx_inputs_loading"></i>
+        </p>
+        <small class="text-muted" id="inputs_counter"></small>
+        <p class="text-center">
+            <button class="btn btn-primary px-5 py-1" type="button" id="tx_inputs_btn">
+                <i class="fa fa-angle-down fa-lg"></i>
+            </button>
+        </p>
+    </div>
+    <div class="col">
+        <h4 class="mb-1 mt-5 text-center">
+            <span class="badge badge-secondary mr-2">
+                <i class="fa fa-share text-info mr-2"></i>{{$.RECIPIENTS}}</span>
+        </h4>
+        <ul class="list-group mt-3" id="tx_recipients">
+            <!-- AJAX RECIPIENTS -->
+        </ul>
+        <p class="text-center">
+            <i class="fas fa-spinner fa-spin fa-3x text-muted m-3" id="tx_recipients_loading"></i>
+        </p>
+        <small class="text-muted" id="recipients_counter"></small>
+        <p class="text-center">
+            <button class="btn btn-primary px-5 py-1" type="button" id="tx_recipients_btn">
+                <i class="fa fa-angle-down fa-lg"></i>
+            </button>
+        </p>
+    </div>
+</div>
