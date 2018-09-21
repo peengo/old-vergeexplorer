@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"start": "node ./bin/www",
-		"devstart": "nodemon ./bin/www"
+		"devstart": "nodemon -L ./bin/www"
 	},
 	"dependencies": {
 		"bitcoin-rpc-promise": "^1.1.0",
@@ -20,6 +20,6 @@
 		"morgan": "~1.9.0"
 	},
 	"devDependencies": {
-		"nodemon": "^1.18.3"
+		"nodemon": "^1.18.4"
 	}
 }

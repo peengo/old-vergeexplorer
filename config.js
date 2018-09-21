@@ -9,9 +9,11 @@ module.exports = {
     db: 'blockchain', // database name
     blocks: 'blocks', // blocks collection name
     txs: 'txs', // transactions collections name
-    addr: 'addresses', // addresses collection name
+    addr: 'addr', // addresses collection name
+    addr_tx: 'addr_tx', // address transactions collection name
     info: 'info', // getinfo collection name
     peers: 'peers', // peers collection name
+    rich: 'richlist', // richlist collection name
 
     latest: 10, // latest 10 blocks / txs on homepage
     limit: 50, // pager limit
@@ -30,5 +32,7 @@ module.exports = {
     rpcUser: 'vergerpcusername',
     rpcPass: '85CpSuCNvDcYsdQU8w621mkQqJAimSQwCSJL5dPT9wQX',
     rpcHost: 'localhost',
-    rpcPort: '20102'
+    rpcPort: '20102',
+
+    usePrebuiltRichlist: true
 }
