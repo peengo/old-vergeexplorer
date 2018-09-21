@@ -325,16 +325,26 @@ router.get('/address/txs/:address/:rows', async (req, res) => {
 router.get('/richlist', async (req, res) => {
     try {
         //const addr = req.app.locals.addr;
-        const info = req.app.locals.info;
+        // const info = req.app.locals.info;
 
         const db = req.app.locals.db;
-        const addr = db.collection('addr');
 
-        const addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(100).toArray();
+        let addresses = [];
 
-        addresses.map((address, index) => {
-            address.index = index + 1;
-        });
+        if (config.usePrebuiltRichlist) {
+            // USING PREBUILT DATA
+            const rich = db.collection(config.rich);
+            let richlist = await rich.find().sort({ timestamp: -1 }).limit(1).toArray();
+            richlist = richlist[0];
+            addresses = richlist.data;
+        } else {
+            // BUILDING ON THE GO
+            const addr = db.collection('addr');
+            addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(100).toArray();
+            addresses.map((address, index) => {
+                address.index = index + 1;
+            });
+        }
 
         res.render('newrichlist', { addresses, layout: false });
     } catch (e) {
