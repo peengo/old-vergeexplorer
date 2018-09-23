@@ -118,9 +118,8 @@ console.time('test');
                             const resTx = await transactions.replaceOne({ _id: tx.txid }, tx, options);
                             //console.log('txid: ' + resTx.ops[0].txid + ' updated');
 
-
-                            await lib.prepareVouts(tx, addr, addr_txs);
                             await lib.prepareVins(tx, transactions, addr, addr_txs);
+                            await lib.prepareVouts(tx, addr, addr_txs);
                         });
                         console.log('| ' + txs.length + ' tx(s) updated');
                     } else {
@@ -131,8 +130,8 @@ console.time('test');
                         console.log('| ' + resTx.insertedCount + ' tx(s) inserted');
 
                         for (const tx of txs) {
-                            await lib.prepareVouts(tx, addr, addr_txs);
                             await lib.prepareVins(tx, transactions, addr, addr_txs);
+                            await lib.prepareVouts(tx, addr, addr_txs);
                         }
                     }
 

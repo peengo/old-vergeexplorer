@@ -1,10 +1,7 @@
 'use strict';
 
 const config = require('../config.js');
-//const lib = require('../lib/lib.js');
 const mongo = require('mongodb').MongoClient;
-const BitcoinRpc = require('bitcoin-rpc-promise');
-const rpc = new BitcoinRpc('http://' + config.rpcUser + ':' + config.rpcPass + '@' + config.rpcHost + ':' + config.rpcPort);
 
 (async () => {
     try {
