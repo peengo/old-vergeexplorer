@@ -24,7 +24,7 @@ console.time('test');
 
         // 2373780
 
-        let height = 2373700;
+        let height = 0;
 
         while (true) {
             const block = await blocks.findOne({ height: height });
@@ -32,8 +32,8 @@ console.time('test');
 
             const transactions = await txs.find({ txid: { $in: txids } }).toArray();
             for (const tx of transactions) {
-                await lib.prepareVouts(tx, addr, addr_txs);
                 await lib.prepareVins(tx, txs, addr, addr_txs);
+                await lib.prepareVouts(tx, addr, addr_txs);
             }
             if (height % 1000 === 0) {
                 console.log(height);

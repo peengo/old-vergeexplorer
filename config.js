@@ -4,6 +4,7 @@ module.exports = {
     file: 'D:\\Crypto\\NewVergeWallet\\VERGEd.exe', // daemon
     maxBuffer: 10 * 1024 * 1024, // buffer size for execFile
     sleep: 10 * 1000, // 10 seconds
+    sleepErr: 60 * 1000, // 60 seconds
 
     mongoURL: 'mongodb://localhost:27017',
     db: 'blockchain', // database name

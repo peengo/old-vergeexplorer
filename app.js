@@ -36,7 +36,7 @@ const daemonConnect = async () => {
     try {
         await rpc.getInfo();
     } catch (e) {
-        daemonErr = false;
+        daemonErr = true;
         console.log(e);
     }
 }
@@ -54,8 +54,9 @@ const mongoConnect = async () => {
         app.locals.txs = db.collection(config.txs);
         app.locals.addr = db.collection(config.addr);
         app.locals.addr_txs = db.collection(config.addr_txs);
+        app.locals.richlist = db.collection(config.rich);
     } catch (e) {
-        mongoErr = false;
+        mongoErr = true;
         console.log(e);
     }
 };

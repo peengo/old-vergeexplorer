@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const config = require('./../config.js');
+
 router.get('/', async (req, res, next) => {
     try {
         //const addr = req.app.locals.addr;
@@ -19,7 +21,15 @@ router.get('/', async (req, res, next) => {
         //     address.index = index + 1;
         // });
 
-        res.render('richlist', { /*addresses,*/ getInfo });
+        let timestamp = null;
+
+        if (config.usePrebuiltRichlist) {
+            const rich = req.app.locals.richlist;
+            let richlist = await rich.find().sort({ timestamp: -1 }).limit(1).toArray();
+            timestamp = richlist[0].timestamp;
+        }
+
+        res.render('richlist', { /*addresses,*/ getInfo, timestamp });
     } catch (e) {
         console.log(e)
 

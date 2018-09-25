@@ -614,6 +614,15 @@ const setValues = async () => {
 
 // RICHLIST
 if (richlist) {
+
+    const timestamp = document.querySelector('#timestamp');
+    if (timestamp.dataset.timestamp !== '') {
+        const ago = document.querySelector('#ago');
+        ago.textContent = formatTimeAgo(timestamp.dataset.timestamp)
+        timestamp.classList.add('d-block');
+    }
+    
+
     let tbody = document.querySelector('#richlist > tbody');
     const loading = document.querySelector('#richlist_loading').classList;
     fetch('/api/richlist')
