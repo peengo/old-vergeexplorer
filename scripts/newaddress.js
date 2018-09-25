@@ -19,8 +19,8 @@ console.time('test');
         const db = client.db(config.db);
         const blocks = db.collection(config.blocks);
         const txs = db.collection(config.txs);
-        const addr = db.collection('addr');
-        const addr_txs = db.collection('addr_txs');
+        const addr = db.collection(config.addr);
+        const addr_txs = db.collection(config.addr_txs);
 
         // 2373780
 

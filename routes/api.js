@@ -300,7 +300,7 @@ router.get('/address/txs/:address/:rows', async (req, res) => {
         rows = Number(rows);
 
         const db = req.app.locals.db;
-        const addr_txs = db.collection('addr_txs');
+        const addr_txs = req.app.locals.addr_txs;
 
         const count = await addr_txs.find({ address: address }).count();
         const txs = await addr_txs.find({ address: address }).sort({ time: -1 }).skip(rows).limit(config.limit).toArray();
@@ -339,7 +339,7 @@ router.get('/richlist', async (req, res) => {
             addresses = richlist.data;
         } else {
             // BUILDING ON THE GO
-            const addr = db.collection('addr');
+            const addr = req.app.locals.addr;
             addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(100).toArray();
             addresses.map((address, index) => {
                 address.index = index + 1;

@@ -10,7 +10,7 @@ module.exports = {
     blocks: 'blocks', // blocks collection name
     txs: 'txs', // transactions collections name
     addr: 'addr', // addresses collection name
-    addr_tx: 'addr_tx', // address transactions collection name
+    addr_txs: 'addr_txs', // address transactions collection name
     info: 'info', // getinfo collection name
     peers: 'peers', // peers collection name
     rich: 'richlist', // richlist collection name

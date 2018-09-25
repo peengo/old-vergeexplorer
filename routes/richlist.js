@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
         let getInfo = await rpc.getInfo();
 
         // const db = req.app.locals.db;
-		// const addr = db.collection('addr');
+		// const addr = req.app.locals.addr;
 
         // const addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(100).toArray();
         

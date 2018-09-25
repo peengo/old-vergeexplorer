@@ -22,8 +22,8 @@ router.get('/:address', async (req, res, next) => {
 		}
 
 		const db = req.app.locals.db;
-		const addr = db.collection('addr');
-		const addr_txs = db.collection('addr_txs');
+		const addr = req.app.locals.addr;
+		const addr_txs = req.app.locals.addr_txs;
 
 		const data = await addr.findOne({ address: address });
 

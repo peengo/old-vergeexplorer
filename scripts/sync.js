@@ -33,8 +33,8 @@ console.time('test');
         const info = db.collection(config.info);
         const peers = db.collection(config.peers);
 
-        const addr = db.collection('addr');
-        const addr_txs = db.collection('addr_txs');
+        const addr = db.collection(config.addr);
+        const addr_txs = db.collection(config.addr_txs);
 
         // infinite loop
         while (true) {

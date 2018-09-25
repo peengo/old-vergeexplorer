@@ -27,8 +27,8 @@ console.time('test');
         const db = client.db(config.db);
         const blocks = db.collection(config.blocks);
         // const txs = db.collection(config.txs);
-        // const addr = db.collection('addr');
-        // const addr_txs = db.collection('addr_txs');
+        // const addr = req.app.locals.addr;
+        // const addr_txs = req.app.locals.addr_txs;
 
         verge.auth('vergerpcusername', '85CpSuCNvDcYsdQU8w621mkQqJAimSQwCSJL5dPT9wQX');
 

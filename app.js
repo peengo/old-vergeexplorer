@@ -53,8 +53,7 @@ const mongoConnect = async () => {
         app.locals.blocks = db.collection(config.blocks);
         app.locals.txs = db.collection(config.txs);
         app.locals.addr = db.collection(config.addr);
-        app.locals.info = db.collection(config.info);
-        app.locals.peers = db.collection(config.peers);
+        app.locals.addr_txs = db.collection(config.addr_txs);
     } catch (e) {
         mongoErr = false;
         console.log(e);
