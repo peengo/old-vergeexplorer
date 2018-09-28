@@ -8,7 +8,7 @@ const util = require('util');
 
 const BitcoinRpc = require('bitcoin-rpc-promise');
  
-let btc = new BitcoinRpc('http://vergerpcusername:85CpSuCNvDcYsdQU8w621mkQqJAimSQwCSJL5dPT9wQX@localhost:20102');
+let btc = new BitcoinRpc(config.rpcUrl());
 
 const mongo = require('mongodb').MongoClient;
 const Decimal = require('decimal.js-light');

@@ -24,7 +24,7 @@ console.time('test');
 
         // 2373780
 
-        let height = 0;
+        let height = 2384897;
 
         while (true) {
             const block = await blocks.findOne({ height: height });
@@ -38,6 +38,7 @@ console.time('test');
             if (height % 1000 === 0) {
                 console.log(height);
             }
+
             // if (height == 5000) {
             //     console.timeEnd('test');
             //     process.exit();

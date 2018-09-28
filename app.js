@@ -14,7 +14,7 @@ const cli = require('./lib/cli.js');
 
 // RPC
 const BitcoinRpc = require('bitcoin-rpc-promise');
-let rpc = new BitcoinRpc('http://vergerpcusername:85CpSuCNvDcYsdQU8w621mkQqJAimSQwCSJL5dPT9wQX@localhost:20102');
+let rpc = new BitcoinRpc(config.rpcUrl());
 
 const app = express();
 
@@ -36,7 +36,7 @@ const daemonConnect = async () => {
     try {
         await rpc.getInfo();
     } catch (e) {
-        daemonErr = true;
+        daemonErr = false;
         console.log(e);
     }
 }

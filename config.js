@@ -1,10 +1,17 @@
 module.exports = {
-    port: 4000, // app port
-
     file: 'D:\\Crypto\\NewVergeWallet\\VERGEd.exe', // daemon
     maxBuffer: 10 * 1024 * 1024, // buffer size for execFile
+
     sleep: 10 * 1000, // 10 seconds
     sleepErr: 60 * 1000, // 60 seconds
+
+    rpcUser: 'vergerpcusername',
+    rpcPass: '85CpSuCNvDcYsdQU8w621mkQqJAimSQwCSJL5dPT9wQX',
+    rpcHost: 'localhost',
+    rpcPort: '20102',
+    rpcUrl() {
+        return 'http://' + this.rpcUser + ':' + this.rpcPass + '@' + this.rpcHost + ':' + this.rpcPort;
+    },
 
     mongoURL: 'mongodb://localhost:27017',
     db: 'blockchain', // database name
@@ -29,11 +36,5 @@ module.exports = {
     precision: 30, // The maximum number of significant digits of the result of an operation.
 
     maintenance: false,
-
-    rpcUser: 'vergerpcusername',
-    rpcPass: '85CpSuCNvDcYsdQU8w621mkQqJAimSQwCSJL5dPT9wQX',
-    rpcHost: 'localhost',
-    rpcPort: '20102',
-
     usePrebuiltRichlist: true
 }
