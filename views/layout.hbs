@@ -34,8 +34,8 @@
 	<nav class="navbar navbar-expand-md navbar-dark bg-secondary mb-5">
 		<a class="navbar-brand" href="/">
 			<img src="/img/symbol_xs.png" alt="logo" class="align-top mr-1">{{$.EXPLORER_NAME}}</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false"
-		 aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+		 aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbar">
@@ -51,7 +51,8 @@
 			</ul>
 			<span class="navbar-text mr-2 text-warning" id="error">{{ err }}</span>
 			<form id="search_form" class="form-inline my-2 my-lg-0">
-				<input type="text" name="search" id="search" class="form-control mr-2" placeholder="{{$.SEARCH_PLACEHOLDER}}" autocomplete="off">
+				<input type="text" name="search" id="search" class="form-control mr-2" placeholder="{{$.SEARCH_PLACEHOLDER}}"
+				 autocomplete="off">
 				<button type="submit" class="btn btn-success my-2">
 					<i class="fa fa-search mr-1"></i>
 					<strong>{{$.SEARCH}}</strong>
@@ -67,7 +68,6 @@
 			<i class="fa fa-copyright"></i> {{$.YEAR}}</small>
 	</p>
 	<!-- JS -->
-	<script>const W = "{{$.PRIV_KEY_WARNING}}";</script>
 	<script src="/js/script.js"></script>
 </body>
 

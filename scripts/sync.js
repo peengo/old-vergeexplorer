@@ -4,6 +4,7 @@ const config = require('../config.js');
 const lib = require('../lib/lib.js');
 const cli = require('../lib/cli.js');
 const mongo = require('mongodb').MongoClient;
+const delay = require('delay');
 /*
 const Decimal = require('decimal.js-light');
 Decimal.set({
@@ -14,9 +15,9 @@ Decimal.set({
 const BitcoinRpc = require('bitcoin-rpc-promise');
 let rpc = new BitcoinRpc(config.rpcUrl());
 
-const sleep = (ms = 0) => {
-    return new Promise(r => setTimeout(r, ms));
-}
+// const sleep = (ms = 0) => {
+//     return new Promise(r => setTimeout(r, ms));
+// }
 
 console.time('test');
 
@@ -143,13 +144,13 @@ console.time('test');
                     }
                 }
                 console.log('...Sleeping...Waiting for new blocks');
-                await sleep(config.sleep);
+                await delay(10 * 1000);
             }
         } catch (e) {
             console.log(e);
         } finally {
             console.log('...Sleeping...Error');
-            await sleep(config.sleepErr);
+            await delay(60 * 1000);
         }
     }
 })();

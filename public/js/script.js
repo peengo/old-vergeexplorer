@@ -681,15 +681,3 @@ const postSearch = event => {
         });
 }
 document.querySelector('#search_form').addEventListener('submit', postSearch);
-
-// SEARCH Private Key Check
-const checkForPrivKey = () => {
-    const search = document.querySelector('#search');
-    if (search.value.length == 51) {
-        const text = W;
-        if (confirm(text)) {
-            search.value = null;
-        }
-    }
-}
-document.querySelector('#search').addEventListener('input', checkForPrivKey);
