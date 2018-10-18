@@ -14,6 +14,9 @@ router.get('/:hash', async (req, res, next) => {
 			res.render('index', { err: $.NOT_VALID_HASH });
 			return;
 		}
+
+		// from db + rpc combined
+		/*
 		const blocks = req.app.locals.blocks;
 
 		//const count = await blocks.count();
@@ -32,6 +35,10 @@ router.get('/:hash', async (req, res, next) => {
 		const blockRpc = await rpc.getBlock(block.hash);
 
 		block.confirmations = blockRpc.confirmations;
+		*/
+
+		// NEW from rpc only
+		const block = await rpc.getBlock(hash);
 
 		res.render('block', { block });
 	} catch (e) {

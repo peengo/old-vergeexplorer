@@ -24,7 +24,7 @@ console.time('test');
 
         // 2373780
 
-        let height = 2384897;
+        let height = 2384896;
 
         while (true) {
             const block = await blocks.findOne({ height: height });

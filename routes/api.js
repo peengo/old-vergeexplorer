@@ -50,8 +50,10 @@ router.get('/block/:hash', async (req, res) => {
             res.json({ err: $.NOT_VALID_HASH });
         }
 
+        // from db + rpc
+        /*
         const blocks = req.app.locals.blocks;
-        const count = await blocks.count();
+        //const count = await blocks.count();
         const block = await blocks.findOne({ hash: hash });
 
         if (block === null) {
@@ -64,6 +66,9 @@ router.get('/block/:hash', async (req, res) => {
         // NEW rpc
         const blockRpc = await rpc.getBlock(block.hash);
         block.confirmations = blockRpc.confirmations;
+        */
+
+        const block = await rpc.getBlock(hash);
 
         res.json(block);
     } catch (e) {

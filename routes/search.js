@@ -10,18 +10,46 @@ router.post('/', async (req, res) => {
 		const search = req.body.search.trim();
 		const blocks = req.app.locals.blocks;
 		const txs = req.app.locals.txs;
+
+		const rpc = req.app.locals.rpc;
+
 		const $ = req.app.locals.$;
 
 		// INT (block height)
 		if (lib.isPositiveInteger(search)) {
+
+			try {
+				const block = await rpc.call('getblockbynumber', Number(search), true);
+				res.json({ redirect: '/block/' + block.hash })
+			} catch (e) {
+				res.json({ error: $.BLOCK_NOT_FOUND })
+			}
+
+			/*
 			const block = await blocks.findOne({ height: Number(search) });
 			if (block === null) {
 				res.json({ error: $.BLOCK_NOT_FOUND })
 			} else {
 				res.json({ redirect: '/block/' + block.hash })
 			}
+			*/
+
 			// Hash (blockhash / txid)
 		} else if (lib.isValidHash(search)) {
+
+			try {
+				const block = await rpc.getBlock(search);
+				res.json({ redirect: '/block/' + block.hash })
+			} catch (e) {
+				const tx = await txs.findOne({ txid: search });
+				if (tx != null) {
+					res.json({ redirect: '/tx/' + tx.txid })
+				} else {
+					res.json({ error: $.BLOCK_TX_HASH_NOT_FOUND })
+				}
+			}
+
+			/*
 			const block = await blocks.findOne({ hash: search });
 
 			if (block != null) {
@@ -34,6 +62,7 @@ router.post('/', async (req, res) => {
 					res.json({ error: $.BLOCK_TX_HASH_NOT_FOUND })
 				}
 			}
+			*/
 			// Address
 		} else if (lib.isValidAddress(search)) {
 			const address = await txs.findOne({ 'vout.scriptPubKey.addresses': search });

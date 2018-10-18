@@ -12,6 +12,9 @@ const i18n = require('i18n-express');
 const config = require('./config.js');
 const cli = require('./lib/cli.js');
 
+// DB
+const mongo = require('mongodb').MongoClient;
+
 // RPC
 const BitcoinRpc = require('bitcoin-rpc-promise');
 let rpc = new BitcoinRpc(config.rpcUrl());
@@ -28,10 +31,8 @@ app.use(i18n({
     textsVarName: '$'
 }));
 
-let daemonErr = false;
-let mongoErr = false;
-
 // Daemon Test
+/*
 const daemonConnect = async () => {
     try {
         await rpc.getInfo();
@@ -40,10 +41,10 @@ const daemonConnect = async () => {
         console.log(e);
     }
 }
+*/
 
 // MongoDB Connection
-const mongo = require('mongodb').MongoClient;
-const mongoConnect = async () => {
+(async () => {
     try {
         const client = await mongo.connect(config.mongoURL, { bufferMaxEntries: 0 });
         console.log('MongoDB connected');
@@ -56,12 +57,9 @@ const mongoConnect = async () => {
         app.locals.addr_txs = db.collection(config.addr_txs);
         app.locals.richlist = db.collection(config.rich);
     } catch (e) {
-        mongoErr = true;
         console.log(e);
     }
-};
-
-
+})();
 
 // compression
 app.use(compression())
@@ -82,46 +80,50 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ROUTES
 
-(async () => {
-    await daemonConnect();
-    await mongoConnect();
-
+app.use(async (req, res, next) => {
+    const $ = req.app.locals.$;
+    // maintenance check
     if (config.maintenance) {
-        app.get('*', (req, res) => { res.send('Maintenance. Please check back later.') })
+        res.status(500).send($.MAINTENANCE);
+    } else {
+        next();
     }
-    else if (daemonErr) {
-        app.get('*', (req, res) => { res.send('Daemon error.') })
-    } else if (mongoErr) {
-        app.get('*', (req, res) => { res.send('Database error.') })
+    // rpc check
+    /*
+    try {
+        await rpc.getInfo();
+    } catch (e) {
+        res.status(500).send($.RPC_ERR);
+        console.log(e)
     }
-    else {
-        app.use('/', require('./routes/index'));
-        app.use('/search', require('./routes/search'));
-        app.use('/block', require('./routes/block'));
-        app.use('/tx', require('./routes/tx'));
-        app.use('/address', require('./routes/address'));
-        app.use('/api', require('./routes/api'));
-        app.use('/richlist', require('./routes/richlist'));
-        app.use('/peers', require('./routes/peers'));
+    */
+});
 
-        // catch 404 and forward to error handler
-        app.use((req, res, next) => {
-            next(createError(404));
-        });
+app.use('/', require('./routes/index'));
+app.use('/search', require('./routes/search'));
+app.use('/block', require('./routes/block'));
+app.use('/tx', require('./routes/tx'));
+app.use('/address', require('./routes/address'));
+app.use('/api', require('./routes/api'));
+app.use('/richlist', require('./routes/richlist'));
+app.use('/peers', require('./routes/peers'));
 
-        // error handler
-        app.use((err, req, res, next) => {
-            // set locals, only providing error in development
-            res.locals.message = err.message;
-            res.locals.error = req.app.get('env') === 'development' ? err : {};
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+    next(createError(404));
+});
 
-            // render the error page
-            res.status(err.status || 500);
-            res.render('error');
-        });
+// error handler
+app.use((err, req, res, next) => {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-        app.disable('x-powered-by');
-    }
-})();
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+});
+
+app.disable('x-powered-by');
 
 module.exports = app;
