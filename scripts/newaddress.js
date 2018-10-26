@@ -32,7 +32,7 @@ console.time('test');
 
             const transactions = await txs.find({ txid: { $in: txids } }).toArray();
             for (const tx of transactions) {
-                await lib.prepareVins(tx, txs, addr, addr_txs);
+                await lib.prepareVins(tx, txs, addr, addr_txs, blocks);
                 await lib.prepareVouts(tx, addr, addr_txs);
             }
             if (height % 1000 === 0) {

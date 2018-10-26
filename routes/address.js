@@ -85,7 +85,7 @@ router.get('/old/:address', async (req, res) => {
 					let value = Decimal(tx.value);
 					let nextValue = Decimal(txs[i + 1].value);
 
-					if (txs[i + 1].type === "vout") {
+					if (txs[i + 1].type === 'vout') {
 						tx.value = nextValue.minus(value);
 					} else {
 						tx.value = value.minus(nextValue);

@@ -308,7 +308,7 @@ router.get('/address/txs/:address/:rows', async (req, res) => {
         const addr_txs = req.app.locals.addr_txs;
 
         const count = await addr_txs.find({ address: address }).count();
-        const txs = await addr_txs.find({ address: address }).sort({ time: -1 }).skip(rows).limit(config.limit).toArray();
+        const txs = await addr_txs.find({ address: address }).sort({ time: -1, type: -1 }).skip(rows).limit(config.limit).toArray();
         const all = lib.getAllPagesFetched(rows, count);
 
         // for template logic
