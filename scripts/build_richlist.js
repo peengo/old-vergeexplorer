@@ -4,6 +4,8 @@ const config = require('../config.js');
 const mongo = require('mongodb').MongoClient;
 const delay = require('delay');
 
+const DELAY = 10 * 60 * 1000;
+
 (async () => {
     while (true) {
         try {
@@ -35,12 +37,12 @@ const delay = require('delay');
                 client.close();
                 console.log('MongoDB closed')
             }
-            console.log('Sleeping...');
+            console.log('Sleeping...', DELAY, 'ms');
         } catch (e) {
             console.log(e);
             process.exit();
         } finally {
-            await delay(10 * 60 * 1000);
+            await delay(DELAY);
         }
     }
 })();

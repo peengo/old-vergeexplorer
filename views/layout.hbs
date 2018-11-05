@@ -62,11 +62,25 @@
 	</nav>
 	<div class="container">
 		{{{body}}}
+		<div class="row mt-5 mb-3">
+			<div class="col-md-4 offset-md-4 text-center">
+				<small class="text-muted">{{$.EXPLORER_NAME}}
+				<i class="fa fa-copyright"></i> {{$.YEAR}}</small>
+			</div>
+			<div class="col-md-4 text-right">
+				<small class="text-muted">Donations: <a href="/address/{{$.DONATION_ADDRESS}}">{{$.DONATION_ADDRESS}}</a></small>
+			</div>
+		</div>
+
+		{{!-- <p class="text-right mt-5">
+			<small class="text-muted">Donation Address: {{$.DONATION_ADDRESS}}</small>
+		</p>
+		<p class="text-center">
+			<small class="text-muted">{{$.EXPLORER_NAME}}
+				<i class="fa fa-copyright"></i> {{$.YEAR}}</small>
+		</p> --}}
+
 	</div>
-	<p class="text-center mt-5">
-		<small class="text-muted">{{$.EXPLORER_NAME}}
-			<i class="fa fa-copyright"></i> {{$.YEAR}}</small>
-	</p>
 	<!-- JS -->
 	<script src="/js/script.js"></script>
 </body>

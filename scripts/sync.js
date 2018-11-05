@@ -42,15 +42,15 @@ console.time('test');
             while (true) {
                 let count = await blocks.count();
                 const blockDb = count;
-                console.log('Blocks in ' + config.blocks + ' collection: ' + count);
+                console.log('Blocks in', config.blocks, 'collection:', count);
                 // go to last block if not zero
                 if (count > 0) count--;
 
                 // const blockCount = await cli.getblockcount();
                 const blockCount = await rpc.getBlockCount();
 
-                console.log('Blocks in blockchain: ' + blockCount);
-                console.log('Block difference: ' + (blockCount - blockDb));
+                console.log('Blocks in blockchain:', blockCount);
+                console.log('Block difference:', (blockCount - blockDb));
 
                 //count = 2000000;
 
@@ -96,19 +96,21 @@ console.time('test');
 
                         // BLOCK
                         //const block = await cli.getblockbynumber(i, true);
-                        const block = await rpc.call('getblockbynumber', i, true);
+                        let block = await rpc.call('getblockbynumber', i, true);
 
-                        const txs = block.tx;
-                        txs.map(tx => {
-                            tx._id = tx.txid;
-                            tx.blockhash = block.hash;
-                            tx.confirmations = block.confirmations;
-                            tx.blocktime = block.time;
-                            tx.height = block.height;
-                        });
+                        const txs = lib.prepareTxs(block);
+                        // const txs = block.tx;
+                        // txs.map(tx => {
+                        //     tx._id = tx.txid;
+                        //     tx.blockhash = block.hash;
+                        //     tx.confirmations = block.confirmations;
+                        //     tx.blocktime = block.time;
+                        //     tx.height = block.height;
+                        // });
 
-                        block.tx = block.tx.map((tx) => tx.txid);
-                        block._id = block.height;
+                        block = lib.prepareBlock(block);
+                        // block.tx = block.tx.map((tx) => tx.txid);
+                        // block._id = block.height;
 
                         const options = { upsert: true };
 
@@ -118,21 +120,21 @@ console.time('test');
                             process.stdout.write('Block: ' + resBlock.ops[0].height + ' updated  ');
                             txs.forEach(async tx => {
                                 const resTx = await transactions.replaceOne({ _id: tx.txid }, tx, options);
-                                //console.log('txid: ' + resTx.ops[0].txid + ' updated');
+                                //console.log('txid: ', resTx.ops[0].txid, 'updated');
 
-                                await lib.prepareVins(tx, transactions, addr, addr_txs);
+                                await lib.prepareVins(tx, transactions, addr, addr_txs, blocks);
                                 await lib.prepareVouts(tx, addr, addr_txs);
                             });
-                            console.log('| ' + txs.length + ' tx(s) updated');
+                            console.log('|', txs.length, 'tx(s) updated');
                         } else {
                             // INSERT
                             const resBlock = await blocks.insertOne(block);
                             process.stdout.write('Block: ' + resBlock.insertedId + ' inserted ');
                             const resTx = await transactions.insertMany(txs);
-                            console.log('| ' + resTx.insertedCount + ' tx(s) inserted');
+                            console.log('|', resTx.insertedCount, 'tx(s) inserted');
 
                             for (const tx of txs) {
-                                await lib.prepareVins(tx, transactions, addr, addr_txs);
+                                await lib.prepareVins(tx, transactions, addr, addr_txs, blocks);
                                 await lib.prepareVouts(tx, addr, addr_txs);
                             }
                         }

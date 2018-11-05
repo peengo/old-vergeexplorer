@@ -22,7 +22,7 @@ console.time('test');
         const addr = db.collection(config.addr);
         const addr_txs = db.collection(config.addr_txs);
 
-        // 2373780
+        // 2384896
 
         let height = 2384896;
 

@@ -10,7 +10,7 @@ const i18n = require('i18n-express');
 
 // APP
 const config = require('./config.js');
-const cli = require('./lib/cli.js');
+// const cli = require('./lib/cli.js');
 
 // DB
 const mongo = require('mongodb').MongoClient;
@@ -30,6 +30,8 @@ app.use(i18n({
     defaultLang: 'en',
     textsVarName: '$'
 }));
+
+
 
 // Daemon Test
 /*
@@ -82,6 +84,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(async (req, res, next) => {
     const $ = req.app.locals.$;
+    $.DONATION_ADDRESS = config.donationAddress;
     // maintenance check
     if (config.maintenance) {
         res.status(500).send($.MAINTENANCE);

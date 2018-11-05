@@ -33,5 +33,7 @@ module.exports = {
     precision: 30, // The maximum number of significant digits of the result of an operation.
 
     maintenance: false,
-    usePrebuiltRichlist: true
+    usePrebuiltRichlist: true,
+
+    donationAddress: 'DURWKj2AB9pWvjyH8Jj5BAvEaDRZnTzJ1w'
 }
