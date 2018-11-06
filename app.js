@@ -84,6 +84,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(async (req, res, next) => {
     const $ = req.app.locals.$;
+    $.BINANCE_LINK = config.binanceLink;
     $.DONATION_ADDRESS = config.donationAddress;
     // maintenance check
     if (config.maintenance) {

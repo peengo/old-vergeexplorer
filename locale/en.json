@@ -81,5 +81,6 @@
     "TAKE_A_WHILE": "Recalculating... This may take a while",
     "MAINTENANCE": "Maintenance. Please check back later.",
     "RPC_ERR" : "Daemon error.",
-    "DB_ERR" : "Database error"
+    "DB_ERR" : "Database error",
+    "BINANCE": "Buy/Sell at Binance"
 }
