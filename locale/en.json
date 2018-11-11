@@ -78,7 +78,7 @@
     "ERROR": "There was an error",
     "RECALCULATED": "Recalculated",
     "AGO" : "ago",
-    "TAKE_A_WHILE": "Recalculating... This may take a while",
+    "TAKE_A_WHILE": "This may take a while...",
     "MAINTENANCE": "Maintenance. Please check back later.",
     "RPC_ERR" : "Daemon error.",
     "DB_ERR" : "Database error",

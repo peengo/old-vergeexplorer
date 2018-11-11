@@ -7,10 +7,10 @@
             <span class="badge badge-secondary">
                 <i class="fa fa-project-diagram text-info mr-2"></i>{{$.PEERS}}</span>
         </h4>
-        <table id="peers" class="table table-striped mt-3 mb-0">
+        <table id="peers" class="table table-striped mt-3 mb-0 text-center">
             <thead class="bg-secondary">
                 <tr>
-                    <th class="text-center">{{$.ADDRESS}}</th>
+                    <th>{{$.ADDRESS}}</th>
                     <th class="d-none d-lg-table-cell">{{$.CONN_TIME}}</th>
                     <th>{{$.VERSION}}</th>
                     <th>{{$.SUB_VER}}</th>
@@ -19,7 +19,7 @@
             <tbody>
                 {{#each peers}}
                 <tr>
-                    <td class="text-center">
+                    <td>
                         <span class="d-none d-sm-inline">{{ addr }}</span>
                         <span class="d-inline d-sm-none small font-weight-bold">{{ addr }}</span>
                     </td>

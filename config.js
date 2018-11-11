@@ -35,6 +35,6 @@ module.exports = {
     maintenance: false,
     usePrebuiltRichlist: true,
 
-    donationAddress: 'DURWKj2AB9pWvjyH8Jj5BAvEaDRZnTzJ1w',
+    donationAddress: 'DMYrX4EU4ans5FLafcdpZD9TTG3UbEu74d',
     binanceLink: 'https://www.binance.com/?ref=23129601'
 }
