@@ -5,8 +5,8 @@
         <span class="ago text-muted font-weight-bold small d-inline d-md-none">{{ time }}</span>
     </td>
     <td>
-        <a href="/tx/{{ txid }}" class="text-info d-none d-lg-inline">{{ txid }}</a>
-        <a href="/tx/{{ txid }}" class="text-info font-weight-bold short small d-inline d-lg-none">{{ txid }}</a>
+        <a href="/tx/{{ txid }}" class="text-info d-none d-lg-inline monospace">{{ txid }}</a>
+        <a href="/tx/{{ txid }}" class="text-info font-weight-bold short small d-inline d-lg-none monospace">{{ txid }}</a>
     </td>
     {{#if vin}}
     <td class="text-danger text-right">

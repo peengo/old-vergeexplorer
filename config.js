@@ -1,16 +1,18 @@
+const auth = require('./auth.js');
+
 module.exports = {
     // file: 'D:\\Crypto\\NewVergeWallet\\VERGEd.exe', // daemon
     // maxBuffer: 10 * 1024 * 1024, // buffer size for execFile
 
-    rpcUser: 'vergerpcusername',
-    rpcPass: '85CpSuCNvDcYsdQU8w621mkQqJAimSQwCSJL5dPT9wQX',
+    rpcUser: auth.rpcUser,
+    rpcPass: auth.rpcPass,
     rpcHost: 'localhost',
     rpcPort: '20102',
     rpcUrl() {
         return 'http://' + this.rpcUser + ':' + this.rpcPass + '@' + this.rpcHost + ':' + this.rpcPort;
     },
 
-    mongoURL: 'mongodb://localhost:27017',
+    mongoURL: auth.mongoURL,
     db: 'blockchain', // database name
     blocks: 'blocks', // blocks collection name
     txs: 'txs', // transactions collections name

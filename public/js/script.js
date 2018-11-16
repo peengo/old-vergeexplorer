@@ -80,7 +80,7 @@ const formatAmount = num => {
     if (dec === undefined) {
         dec = '00000000';
     } else {
-        while (dec.length <= 8) {
+        while (dec.length < 8) {
             dec += '0';
         }
     }

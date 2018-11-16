@@ -1,6 +1,6 @@
 {{#each transactions}}
 <tr class="table-active" {{#if ../all}}data-all="{{ ../all }}" {{/if}}>
-    <td class="text-left">
+    <td class="text-left monospace">
         <i class="fa fa-money-check-alt text-info mr-1 d-none d-lg-inline"></i>
         <a href="/tx/{{ txid }}" class="text-info d-none d-lg-inline">{{ txid }}</a>
         <a href="/tx/{{ txid }}" class="text-info short font-weight-bold small d-inline d-lg-none ">{{ txid }}</a>

@@ -7,8 +7,8 @@
 </li>
 {{else}}
 <li class="list-group-item" {{#if ../all}}data-all="{{ ../all }}" {{/if}} data-count="{{ ../count }}">
-    <a href="/address/{{ address }}" class="text-danger text-wrap d-none d-sm-block">{{ address }}</a>
-    <a href="/address/{{ address }}" class="font-weight-bold small text-danger text-wrap d-block d-sm-none">{{ address }}</a>
+    <a href="/address/{{ address }}" class="text-danger text-wrap d-none d-sm-block monospace">{{ address }}</a>
+    <a href="/address/{{ address }}" class="font-weight-bold small text-danger text-wrap d-block d-sm-none monospace">{{ address }}</a>
     <h5 class="mt-1">
         <span class="badge badge-secondary ml-2">{{ value }} {{../$.CURRENCY}}</span>
     </h5>

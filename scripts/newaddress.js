@@ -46,8 +46,6 @@ console.time('test');
 
             height++;
         }
-        client.close();
-        console.log('MongoDB closed');
     } catch (e) {
         console.log(e);
         process.exit();
