@@ -13,7 +13,7 @@ Decimal.set({
 });
 */
 const BitcoinRpc = require('bitcoin-rpc-promise');
-let rpc = new BitcoinRpc(config.rpcUrl());
+let rpc = new BitcoinRpc(config.rpcURL);
 
 // const sleep = (ms = 0) => {
 //     return new Promise(r => setTimeout(r, ms));

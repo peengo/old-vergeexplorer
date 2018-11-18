@@ -4,11 +4,11 @@ const config = require('../config.js');
 //const lib = require('../lib/lib.js');
 const mongo = require('mongodb').MongoClient;
 const BitcoinRpc = require('bitcoin-rpc-promise');
-const rpc = new BitcoinRpc(config.rpcUrl());
+const rpc = new BitcoinRpc(config.rpcURL);
 
 (async () => {
     try {
-        const client = await mongo.connect(config.mongoURL);
+        const client = await mongo.connect(config.mongoURL;
         console.log('MongoDB connected');
         const db = client.db(config.db);
         const blocks = db.collection(config.blocks);

@@ -17,7 +17,7 @@ const mongo = require('mongodb').MongoClient;
 
 // RPC
 const BitcoinRpc = require('bitcoin-rpc-promise');
-let rpc = new BitcoinRpc(config.rpcUrl());
+let rpc = new BitcoinRpc(config.rpcURL);
 
 const app = express();
 
