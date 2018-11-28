@@ -22,7 +22,13 @@ Decimal.set({
 
         // 2384896
 
-        const address = 'DBKUgb4MTyWsBeMUcTuP6bLfhX2mZdxXH6';
+        let address = null;
+
+        if (process.argv[2] !== undefined) {
+            address = process.argv[2];
+        } else {
+            address = 'D9HsosoCM6pxWU4UD3cgHFacmD18Fu34g5';
+        }
 
         let vins = await addr_txs.find({ address: address, type: 'vin' }).toArray();
         let vouts = await addr_txs.find({ address: address, type: 'vout' }).toArray();
@@ -39,11 +45,10 @@ Decimal.set({
         (vouts.length !== 0) ? vouts_sum = Decimal(reduceSum(vouts)) : vouts_sum = Decimal(0);
         (boths.length !== 0) ? boths_sum = Decimal(reduceSum(boths)) : boths_sum = Decimal(0);
 
-        // console.log(vins_sum.toString());
-        // console.log(vouts_sum.toString());
-        // console.log(boths_sum.toString());
-
-        console.log(vouts_sum.minus(vins_sum).plus(boths_sum).toString());   
+        console.log('vins:', vins_sum.toString());
+        console.log('vouts:', vouts_sum.toString());
+        console.log('boths:', boths_sum.toString());
+        console.log('balance:', vouts_sum.minus(vins_sum).plus(boths_sum).toString());
 
         client.close();
     } catch (e) {

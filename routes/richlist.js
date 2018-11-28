@@ -13,10 +13,10 @@ router.get('/', async (req, res, next) => {
         let getInfo = await rpc.getInfo();
 
         // const db = req.app.locals.db;
-		// const addr = req.app.locals.addr;
+        // const addr = req.app.locals.addr;
 
         // const addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(100).toArray();
-        
+
         // addresses.map((address, index) => {
         //     address.index = index + 1;
         // });
@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
         if (config.usePrebuiltRichlist) {
             const rich = req.app.locals.richlist;
             let richlist = await rich.find().sort({ timestamp: -1 }).limit(1).toArray();
-            timestamp = richlist[0].timestamp;
+            (richlist[0] === undefined) ? timestamp = null : timestamp = richlist[0].timestamp;
         }
 
         res.render('richlist', { /*addresses,*/ getInfo, timestamp });

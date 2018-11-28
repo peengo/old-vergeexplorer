@@ -341,7 +341,7 @@ router.get('/richlist', async (req, res) => {
             const rich = db.collection(config.rich);
             let richlist = await rich.find().sort({ timestamp: -1 }).limit(1).toArray();
             richlist = richlist[0];
-            addresses = richlist.data;
+            (richlist === undefined) ? addresses = null : addresses = richlist.data;
         } else {
             // BUILDING ON THE GO
             const addr = req.app.locals.addr;

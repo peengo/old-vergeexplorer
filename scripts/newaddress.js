@@ -22,9 +22,24 @@ console.time('test');
         const addr = db.collection(config.addr);
         const addr_txs = db.collection(config.addr_txs);
 
-        // 2384896
+        // for (let height = 2500000; height <= 2700000; height++) {
 
-        let height = 2384896;
+        //     const block = await blocks.findOne({ height: height });
+        //     const txids = block.tx;
+
+        //     const transactions = await txs.find({ txid: { $in: txids } }).toArray();
+        //     for (const tx of transactions) {
+        //         await lib.prepareVins(tx, txs, addr, addr_txs, blocks);
+        //         await lib.prepareVouts(tx, addr, addr_txs);
+        //     }
+        //     if (height % 1000 === 0) {
+        //         console.log(height);
+        //     }
+
+        // }
+
+        
+        let height = 1940000;
 
         while (true) {
             const block = await blocks.findOne({ height: height });
