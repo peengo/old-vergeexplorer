@@ -52,7 +52,7 @@ console.time('test');
                 console.log('Blocks in blockchain:', blockCount);
                 console.log('Block difference:', (blockCount - blockDb));
 
-                //count = 2000000;
+                // count = 2725066;
 
                 if (blockCount != blockDb) {
                     for (let i = count; i < blockCount; i++) {
@@ -128,8 +128,9 @@ console.time('test');
                             console.log('|', txs.length, 'tx(s) updated');
                         } else {
                             // INSERT
-                            const resBlock = await blocks.insertOne(block);
-                            process.stdout.write('Block: ' + resBlock.insertedId + ' inserted ');
+                            // const resBlock = await blocks.insertOne(block);
+                            const resBlock = await blocks.updateOne({ _id: block.height }, { $set: block }, options);
+                            process.stdout.write('Block: ' + resBlock.upsertedId._id + ' inserted ');
                             const resTx = await transactions.insertMany(txs);
                             console.log('|', resTx.insertedCount, 'tx(s) inserted');
 

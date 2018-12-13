@@ -4,7 +4,8 @@
 	"private": true,
 	"scripts": {
 		"start": "node ./bin/www",
-		"devstart": "nodemon -L ./bin/www"
+		"devstart": "nodemon -L ./bin/www",
+		"build": "/usr/bin/uglifyjs ./public/js/script.js -o ./public/js/script.min.js -cm"
 	},
 	"dependencies": {
 		"bitcoin-rpc-promise": "^1.1.0",
