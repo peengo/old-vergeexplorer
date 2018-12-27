@@ -26,6 +26,7 @@ module.exports = {
     info: 'info', // getinfo collection name
     peers: 'peers', // peers collection name
     rich: 'richlist', // richlist collection name
+    search: 'search', // search collection name
 
     // configs
     latest: 10, // latest 10 blocks / txs on homepage

@@ -11,6 +11,15 @@ router.post('/', async (req, res) => {
 		const blocks = req.app.locals.blocks;
 		const txs = req.app.locals.txs;
 
+		// log search queries to db
+		const searchCol = req.app.locals.search;
+		await searchCol.insertOne({
+			time: new Date().toLocaleString(),
+			ip: req.headers['x-real-ip'],
+			search: search.slice(0, 99),
+			user_agent: req.headers['user-agent']
+		});
+
 		const rpc = req.app.locals.rpc;
 
 		const $ = req.app.locals.$;

@@ -58,6 +58,7 @@ const daemonConnect = async () => {
         app.locals.addr = db.collection(config.addr);
         app.locals.addr_txs = db.collection(config.addr_txs);
         app.locals.richlist = db.collection(config.rich);
+        app.locals.search = db.collection(config.search);
     } catch (e) {
         console.log(e);
     }
