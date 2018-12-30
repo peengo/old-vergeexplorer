@@ -33,6 +33,7 @@ router.get('/:address', async (req, res, next) => {
 		}
 
 		const count = await addr_txs.find({ address: address }).count();
+		const balanceIsNeg = Decimal(data.balance).isNegative();
 
 		/*
 		const txs = await addr_txs.find({ address: address }).sort({ time: -1 }).toArray();
@@ -47,18 +48,19 @@ router.get('/:address', async (req, res, next) => {
 		txs.map(tx => { if (tx.type == 'both') tx.both = true });
 		*/
 
-		res.render('address', { data, count });
+		res.render('address', { data, count, balanceIsNeg });
 	} catch (e) {
 		console.log(e);
-		
+
 		const $ = req.app.locals.$;
-        const error = new Error($.ERROR);
-        next(error);
-		
+		const error = new Error($.ERROR);
+		next(error);
+
 		//res.status(500).send($.ERROR);
 	}
 });
 
+/*
 router.get('/old/:address', async (req, res) => {
 	try {
 		const address = req.params.address;
@@ -118,5 +120,6 @@ router.get('/old/:address', async (req, res) => {
 		console.log(e);
 	}
 });
+*/
 
 module.exports = router;

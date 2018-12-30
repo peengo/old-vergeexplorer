@@ -1,3 +1,10 @@
+{{#if balanceIsNeg}}
+<div class="row">
+    <div class="col">
+        <h3 class="text-center">{{$.ADDRESS_NEG}}</h3>
+    </div>
+</div>
+{{else}}
 <div class="row" id="address">
     <div class="col">
         <div class="row">
@@ -14,8 +21,10 @@
                             <div class="col">
                                 <i class="fa fa-wallet text-warning mr-2 mb-1"></i>{{$.WALLET_ADDRESS}}
                                 <p class="text-wrap m-1">
-                                    <span class="d-none d-md-inline text-info text-wrap" id="address_hash">{{ data.address }}</span>
-                                    <span class="d-inline d-md-none small font-weight-bold text-info text-wrap">{{ data.address }}</span>
+                                    <span class="d-none d-md-inline text-info text-wrap" id="address_hash">{{
+                                        data.address }}</span>
+                                    <span class="d-inline d-md-none small font-weight-bold text-info text-wrap">{{
+                                        data.address }}</span>
                                 </p>
                                 <div class="row mt-4">
                                     <div class="col pt-3">
@@ -24,7 +33,8 @@
                                         <p class="d-none d-md-inline">{{$.TOTAL_RECEIVED}}</p>
                                         <p class="d-none d-md-block text-success m-1 amount38">{{ data.received }}</p>
                                         <p class="d-inline d-md-none small font-weight-bold">{{$.TOTAL_RECEIVED}}</p>
-                                        <p class="d-block d-md-none small font-weight-bold text-success m-1 amount38">{{ data.received }}</p>
+                                        <p class="d-block d-md-none small font-weight-bold text-success m-1 amount38">{{
+                                            data.received }}</p>
                                     </div>
                                     <div class="col pt-3">
                                         <i class="fa fa-wallet d-none d-md-inline"></i>
@@ -32,14 +42,16 @@
                                         <p class="d-none d-md-inline">{{$.TOTAL_SENT}}</p>
                                         <p class="d-none d-md-block text-danger m-1 amount38">{{ data.sent }}</p>
                                         <p class="d-inline d-md-none small font-weight-bold">{{$.TOTAL_SENT}}</p>
-                                        <p class="d-block d-md-none small font-weight-bold text-danger m-1 amount38">{{ data.sent }}</p>
+                                        <p class="d-block d-md-none small font-weight-bold text-danger m-1 amount38">{{
+                                            data.sent }}</p>
                                     </div>
                                     <div class="col pt-3">
                                         <i class="fa fa-wallet mr-1 d-none d-md-inline"></i>
                                         <p class="d-none d-md-inline">{{$.BALANCE}}</p>
                                         <p class="d-none d-md-block m-1 amount38">{{ data.balance }}</p>
                                         <p class="d-inline d-md-none small font-weight-bold">{{$.BALANCE}}</p>
-                                        <p class="d-block d-md-none small font-weight-bold m-1 amount38">{{ data.balance }}</p>
+                                        <p class="d-block d-md-none small font-weight-bold m-1 amount38">{{
+                                            data.balance }}</p>
                                     </div>
                                     <div class="col pt-3">
                                         <i class="fa fa-dollar-sign mr-1 d-none d-md-inline"></i>
@@ -48,13 +60,14 @@
                                             <i class="fas fa-spinner fa-spin text-muted"></i>
                                         </p>
                                         <p class="d-inline d-md-none small font-weight-bold">{{$.VALUE}}</p>
-                                        <p class="d-block d-md-none small font-weight-bold m-1 value text-warning" data-value="{{ data.balance }}">
+                                        <p class="d-block d-md-none small font-weight-bold m-1 value text-warning"
+                                            data-value="{{ data.balance }}">
                                             <i class="fas fa-spinner fa-spin text-muted"></i>
                                         </p>
                                         {{> binance_button }}
                                     </div>
                                     <div class="col p-3">
-                                         <img alt="qrcode" src="https://chart.googleapis.com/chart?cht=qr&chl={{ data.address }}&chs=128x128&chld=L%7C0">
+                                        <img alt="qrcode" src="https://chart.googleapis.com/chart?cht=qr&chl={{ data.address }}&chs=128x128&chld=L%7C0">
                                     </div>
                                 </div>
                             </div>
@@ -104,3 +117,4 @@
         </p>
     </div>
 </div>
+{{/if}}

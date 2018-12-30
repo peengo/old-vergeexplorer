@@ -51,7 +51,7 @@
     "BLOCK_HEIGHT": "Block Height",
     "INPUT_ADDRESSES": "Input Addresses",
     "ADDRESS": "Address",
-    "WALLET_ADDRESS": "Public Key",
+    "WALLET_ADDRESS": "Address",
     "TOTAL_RECEIVED": "Total Received (XVG)",
     "TOTAL_SENT": "Total Sent (XVG)",
     "BALANCE": "Balance (XVG)",
@@ -82,5 +82,6 @@
     "MAINTENANCE": "Maintenance. Please check back later.",
     "RPC_ERR" : "Daemon error.",
     "DB_ERR" : "Database error",
-    "BINANCE": "Buy/Sell at Binance"
+    "BINANCE": "Buy/Sell at Binance",
+    "ADDRESS_NEG" : "Internal server error with this address. Please check back later..."
 }
