@@ -32,8 +32,10 @@ module.exports = {
     latest: 10, // latest 10 blocks / txs on homepage
     limit: 50, // pager limit
     shortHash: 14, // short hash on first page followed by ...
+    peerLimit: 30, // peer limit on peer page
     maintenance: false,
     usePrebuiltRichlist: true,
+    hideNegativeBalanceAddress: true,
 
     // regexp
     hashRegExp: /^([A-Fa-f0-9]{64})$/,

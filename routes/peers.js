@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const config = require('./../config.js');
+
 router.get('/', async (req, res, next) => {
     try {
         const localhost = '127.0.0.1';
@@ -14,7 +16,7 @@ router.get('/', async (req, res, next) => {
         const rpc = req.app.locals.rpc;
         let peers = await rpc.getPeerInfo();
 
-        peers = peers.splice(0,30);
+        peers = peers.splice(0, config.peerLimit - 1);
 
         peers.forEach(peer => {
             if (!peer.addr.includes(localhost)) {
@@ -35,8 +37,8 @@ router.get('/', async (req, res, next) => {
         const $ = req.app.locals.$;
         const error = new Error($.ERROR);
         next(error);
-		
-		//res.status(500).send($.ERROR);
+
+        //res.status(500).send($.ERROR);
     }
 });
 

@@ -33,7 +33,8 @@ router.get('/:address', async (req, res, next) => {
 		}
 
 		const count = await addr_txs.find({ address: address }).count();
-		const balanceIsNeg = Decimal(data.balance).isNegative();
+		// const balanceIsNeg = Decimal(data.balance).isNegative();
+		const balanceIsNeg = Decimal(data.balance).isNegative() && config.hideNegativeBalanceAddress;
 
 		/*
 		const txs = await addr_txs.find({ address: address }).sort({ time: -1 }).toArray();

@@ -83,5 +83,5 @@
     "RPC_ERR" : "Daemon error.",
     "DB_ERR" : "Database error",
     "BINANCE": "Buy/Sell at Binance",
-    "ADDRESS_NEG" : "Internal server error with this address. Please check back later..."
+    "ADDRESS_NEG" : "There was an error displaying this address. Please check back later..."
 }
