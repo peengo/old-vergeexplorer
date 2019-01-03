@@ -41,9 +41,9 @@ router.get('/info', async (req, res, next) => {
 
 // JSON BLOCK
 router.get('/block/:hash', async (req, res) => {
+    const $ = req.app.locals.$;
     try {
         const hash = req.params.hash;
-        const $ = req.app.locals.$;
         const rpc = req.app.locals.rpc;
 
         if (!lib.isValidHash(hash)) {
@@ -73,14 +73,15 @@ router.get('/block/:hash', async (req, res) => {
         res.json(block);
     } catch (e) {
         console.log(e);
+        res.json({ err: $.ERROR });
     }
 });
 
 // JSON TX
 router.get('/tx/:txid', async (req, res) => {
+    const $ = req.app.locals.$;
     try {
         const txid = req.params.txid;
-        const $ = req.app.locals.$;
         const rpc = req.app.locals.rpc;
 
         if (!lib.isValidHash(txid)) {
@@ -105,20 +106,24 @@ router.get('/tx/:txid', async (req, res) => {
         res.json(tx);
     } catch (e) {
         console.log(e);
+        res.json({ err: $.ERROR });
     }
 });
 
 // JSON CONFIRMATIONS
 router.get('/confirmations/:hash', async (req, res) => {
+    const $ = req.app.locals.$;
     try {
         const hash = req.params.hash;
-        const $ = req.app.locals.$;
         const rpc = req.app.locals.rpc;
 
         if (!lib.isValidHash(hash)) {
             res.json({ err: $.NOT_VALID_HASH });
         }
 
+        const block = await rpc.getBlock(hash);
+
+        /*
         const blocks = req.app.locals.blocks;
         const count = await blocks.count();
         const block = await blocks.findOne({ hash: hash });
@@ -132,10 +137,12 @@ router.get('/confirmations/:hash', async (req, res) => {
         // NEW rpc
         const blockRpc = await rpc.getBlock(block.hash);
         block.confirmations = blockRpc.confirmations;
+        */
 
         res.json({ confirmations: block.confirmations });
     } catch (e) {
         console.log(e);
+        res.json({ err: $.ERROR });
     }
 });
 
@@ -166,7 +173,7 @@ router.get('/txs/latest', async (req, res) => {
     }
 });
 
-// HTML BLOCKS TXS PAGER
+// HTML BLOCK TXS PAGER
 router.get('/block/txs/:hash/:rows', async (req, res) => {
     try {
         const hash = req.params.hash;
@@ -192,7 +199,7 @@ router.get('/block/txs/:hash/:rows', async (req, res) => {
         const block = await blocks.findOne({ hash: hash });
 
         if (block === null) {
-            res.send($.BLOCK_NOT_FOUND);
+            res.send($.INVALID_BLOCK);
             return;
         }
 

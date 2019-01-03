@@ -47,6 +47,8 @@ module.exports = {
     precision: 30, // The maximum number of significant digits of the result of an operation.
 
     // monetization
-    donationAddress: 'DMYrX4EU4ans5FLafcdpZD9TTG3UbEu74d',
+    donationAddress: 'DEHYYiNA4fb7h59DGPyrDNNoRRF5ZtMmy9',
+    donationBTC: '18URw9ezbm7QSwsf8H6cxNxRFftBQmRCVM',
+    donationLTC: 'LMpZDXuifWL21QynxmC7NtRpKkMSwmjUP6',
     binanceLink: 'https://www.binance.com/?ref=23129601'
 }

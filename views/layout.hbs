@@ -6,8 +6,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Verge Cryptocurrency (XVG) blockchain explorer" />
-	 <meta name="keywords" content="Verge,Explorer,XVG,Blockchain,VergeExplorer">
+	<meta name="description" content="{{$.DESC}}" />
+	<meta name="keywords" content="{{$.KEYWORDS}}">
 
 	<title>{{$.EXPLORER_NAME}}</title>
 	<!-- FAVICON -->
@@ -20,24 +20,7 @@
 	<link rel="stylesheet" href="/css/fontawesome-all.min.css" /> --}}
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
 	 crossorigin="anonymous">
-	<style>
-		@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-		.monospace {
-			font-family: 'Roboto Mono', monospace;
-		}
-
-		a:hover {
-			text-decoration: none;
-		}
-
-		input#search {
-			width: 325px;
-		}
-
-		.text-wrap {
-			word-wrap: break-word;
-		}
-	</style>
+	<style>@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);.monospace{font-family:'Roboto Mono',monospace}a:hover{text-decoration:none}input#search{width:325px}.text-wrap{word-wrap:break-word}</style>
 	<!-- JS -->
 	{{!--
 	<script src="/js/bootstrap-native-v4.min.js"></script> --}}
@@ -76,14 +59,20 @@
 	</nav>
 	<div class="container">
 		{{{body}}}
-		<div class="row mt-5 mb-3">
-			<div class="col-md-4 offset-md-4 text-center">
+		<div class="row mt-5 mb-3 text-center">
+			<div class="col-md-4">
+				<!-- Button trigger modal -->
+				<a href="#" data-toggle="modal" data-target="#modalContact">{{$.CONTACT}}</a>
+			</div>
+			<div class="col-md-4">
 				<small class="text-muted">{{$.EXPLORER_NAME}}
 					<i class="fa fa-copyright"></i> {{$.YEAR}}</small>
 			</div>
-			<div class="col-md-4 text-center">
+			<div class="col-md-4">
 				{{#if $.DONATION_ADDRESS}}
-				<small class="text-muted">Donations: <a href="/address/{{$.DONATION_ADDRESS}}">{{$.DONATION_ADDRESS}}</a></small>
+				{{!-- <small class="text-muted">{{$.DONATIONS}}: <a href="/address/{{$.DONATION_ADDRESS}}">{{$.DONATION_ADDRESS}}</a></small>
+				--}}
+				<a href="/donations" class="text-warning">{{$.DONATIONS}}</a>
 				{{/if}}
 			</div>
 		</div>
@@ -96,6 +85,25 @@
 				<i class="fa fa-copyright"></i> {{$.YEAR}}</small>
 		</p> --}}
 
+	</div>
+	<!-- Modal Contact -->
+	<div class="modal fade" id="modalContact" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="ModalLabel">{{$.CONTACT}}</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="{{$.CLOSE}}">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<img src="/img/contact.png" alt="contact">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">{{$.CLOSE}}</button>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- JS -->
 	<script src="/js/script.min.js"></script>

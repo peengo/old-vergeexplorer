@@ -1,5 +1,8 @@
 {
+    "VERGE" : "VERGE",
     "EXPLORER_NAME": "VergeExplorer",
+    "DESC": "Verge Cryptocurrency (XVG) blockchain explorer",
+    "KEYWORDS" : "Verge,Explorer,XVG,Blockchain,VergeExplorer",
     "RICHLIST": "Richlist",
     "PEERS": "Peers",
     "SEARCH_PLACEHOLDER": "block height / block hash / txid or address",
@@ -13,6 +16,9 @@
     "24H_VOLUME" : "Volume (24h)",
     "USD": "USD",
     "BTC": "BTC",
+    "LTC": "LTC",
+    "BITCOIN": "Bitcoin",
+    "LITECOIN": "Litecoin",
     "PRICE": "Price",
     "TX_FEE": "Transaction Fee",
     "LAST_BLOCKS": "Last Blocks",
@@ -83,5 +89,10 @@
     "RPC_ERR" : "Daemon error.",
     "DB_ERR" : "Database error",
     "BINANCE": "Buy/Sell at Binance",
-    "ADDRESS_NEG" : "There was an error displaying this address. Please check back later..."
+    "ADDRESS_NEG" : "There was an error displaying this address. Please check back later...",
+    "INVALID_BLOCK" : "Possibly invalid block",
+    "DONATIONS": "Donations",
+    "CONTACT" : "Contact",
+    "CLOSE" : "Close",
+    "DONATIONS_TEXT" : "This is a customly developed website. Donating is not necesarry but greatly appreciated. Donations keep this website online. All donations are non-refundable. To show the support you can also use the Binance exchange referral link below."
 }

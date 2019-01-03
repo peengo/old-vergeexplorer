@@ -1,4 +1,5 @@
 const compression = require('compression');
+const helmet = require('helmet');
 
 const createError = require('http-errors');
 const express = require('express');
@@ -66,6 +67,8 @@ const daemonConnect = async () => {
 
 // compression
 app.use(compression())
+// helmet
+app.use(helmet());
 
 // support for partials
 const hbs = require('hbs');
@@ -87,6 +90,8 @@ app.use(async (req, res, next) => {
     const $ = req.app.locals.$;
     $.BINANCE_LINK = config.binanceLink;
     $.DONATION_ADDRESS = config.donationAddress;
+    $.DONATION_BTC = config.donationBTC;
+    $.DONATION_LTC = config.donationLTC;
     // maintenance check
     if (config.maintenance) {
         res.status(500).send($.MAINTENANCE);
@@ -112,6 +117,7 @@ app.use('/address', require('./routes/address'));
 app.use('/api', require('./routes/api'));
 app.use('/richlist', require('./routes/richlist'));
 app.use('/peers', require('./routes/peers'));
+app.use('/donations', require('./routes/donations'));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
