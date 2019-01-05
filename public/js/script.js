@@ -62,8 +62,12 @@ const formatTimeAgo = timestamp => {
 
 const formatTimestamp = timestamp => {
     const date = new Date(timestamp * 1000);
-    const locale = 'en-US'
-    const format = date.getDate() + ' ' + date.toLocaleString(locale, { month: 'short' }) + ' ' + date.getFullYear() + ' - ' + date.toLocaleTimeString(locale);
+    // const locale = 'en-US'
+    // const format = date.getDate() + ' ' + date.toLocaleString(locale, { month: 'short' }) + ' ' + date.getFullYear() + ' - ' + date.toLocaleTimeString(locale);
+
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const format = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear() +  ' - ' + date.toLocaleTimeString();
+
     return format;
 }
 
@@ -313,7 +317,7 @@ if (info) {
             while (priceChange.firstChild) priceChange.removeChild(priceChange.firstChild);
             priceChange.appendChild(small);
             priceChange.insertAdjacentText('afterbegin', percentage);
- 
+
             payTxFee.textContent = data.paytxfee;
 
             formatData(infoId);
@@ -621,7 +625,7 @@ if (richlist) {
         ago.textContent = formatTimeAgo(timestamp.dataset.timestamp)
         timestamp.classList.add('d-block');
     }
-    
+
 
     let tbody = document.querySelector('#richlist > tbody');
     const loading = document.querySelector('#richlist_loading').classList;
