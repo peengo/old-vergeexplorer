@@ -364,4 +364,15 @@ router.get('/richlist', async (req, res) => {
     }
 });
 
+router.get('/peers', async (req,res) => {
+    const $ = req.app.locals.$;
+    try {
+        const peers = await lib.getPeers();
+        res.json(peers);
+    } catch (e) {
+        console.log(e);
+        res.json({ err: $.ERROR });
+    }
+});
+
 module.exports = router;

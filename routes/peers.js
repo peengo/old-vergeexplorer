@@ -2,33 +2,34 @@ const express = require('express');
 const router = express.Router();
 
 const config = require('./../config.js');
+const lib = require('./../lib/lib.js');
 
 router.get('/', async (req, res, next) => {
     try {
-        const localhost = '127.0.0.1';
-        let arr = [];
+        // const localhost = '127.0.0.1';
+        // let arr = [];
 
-        // OLD DB
-        // const db = req.app.locals.peers;
-        // let peers = await db.find().sort({ conntime: -1 }).toArray();
+        // // OLD DB
+        // // const db = req.app.locals.peers;
+        // // let peers = await db.find().sort({ conntime: -1 }).toArray();
 
-        // New RPC
-        const rpc = req.app.locals.rpc;
-        let peers = await rpc.getPeerInfo();
+        // // New RPC
+        // const rpc = req.app.locals.rpc;
+        // let peers = await rpc.getPeerInfo();
 
-        peers = peers.splice(0, config.peerLimit - 1);
+        // peers = peers.splice(0, config.peerLimit - 1);
 
-        peers.forEach(peer => {
-            if (!peer.addr.includes(localhost)) {
-                // remove port number
-                peer.addr = peer.addr.split(':')[0];
-                // remove '/'
-                peer.subver = peer.subver.replace(/[/]/g, '');
-                arr.push(peer);
-            }
-        });
+        // peers.forEach(peer => {
+        //     if (!peer.addr.includes(localhost)) {
+        //         // remove port number
+        //         peer.addr = peer.addr.split(':')[0];
+        //         // remove '/'
+        //         peer.subver = peer.subver.replace(/[/]/g, '');
+        //         arr.push(peer);
+        //     }
+        // });
 
-        peers = arr;
+        peers = await lib.getPeers();
 
         res.render('peers', { peers });
     } catch (e) {
