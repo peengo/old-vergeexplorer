@@ -21,19 +21,21 @@
 	<title>{{$.EXPLORER_NAME}}</title>
 	<!-- FAVICON -->
 	<link rel="shortcut icon" href="/img/favicon.ico" />
-	<!-- CSS -->
-	{{!--
-	<link rel="stylesheet" href="/css/bootstrap.min.css" /> --}}
+	{{#if $.USE_CDN}}
+	<!-- CSS CDN-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.1/darkly/bootstrap.min.css" />
-	{{!--
-	<link rel="stylesheet" href="/css/fontawesome-all.min.css" /> --}}
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
 	 crossorigin="anonymous">
-	<style>@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);.monospace{font-family:'Roboto Mono',monospace}a:hover{text-decoration:none}input#search{width:325px}.text-wrap{word-wrap:break-word}</style>
-	<!-- JS -->
-	{{!--
-	<script src="/js/bootstrap-native-v4.min.js"></script> --}}
+	<!-- JS CDN-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.24/bootstrap-native-v4.min.js"></script>
+	{{else}}
+	<!-- CSS LOCAL-->
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/fontawesome-all.min.css" />
+	<!-- JS LOCAL-->
+	<script src="/js/bootstrap-native-v4.min.js"></script>
+	{{/if}}
+	<style>@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);.monospace{font-family:'Roboto Mono',monospace}a:hover{text-decoration:none}input#search{width:325px}.text-wrap{word-wrap:break-word}</style>
 </head>
 
 <body>
@@ -115,6 +117,7 @@
 		</div>
 	</div>
 	<!-- JS -->
+	<script>const PRIV_KEY_WARNING="{{$.PRIV_KEY_WARNING}}";</script>
 	<script src="/js/script.min.js"></script>
 </body>
 

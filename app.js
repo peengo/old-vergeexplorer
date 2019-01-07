@@ -4,14 +4,12 @@ const helmet = require('helmet');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-//const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const i18n = require('i18n-express');
 
 // APP
 const config = require('./config.js');
-// const cli = require('./lib/cli.js');
 
 // DB
 const mongo = require('mongodb').MongoClient;
@@ -23,6 +21,8 @@ let rpc = new BitcoinRpc(config.rpcURL);
 const app = express();
 
 app.locals.rpc = rpc;
+app.locals.config = config;
+
 // Localization
 app.use(i18n({
     translationsPath: path.join(__dirname, 'locale'),
@@ -31,8 +31,6 @@ app.use(i18n({
     defaultLang: 'en',
     textsVarName: '$'
 }));
-
-
 
 // Daemon Test
 /*
@@ -88,6 +86,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(async (req, res, next) => {
     const $ = req.app.locals.$;
+    // set config vars for every view inside language integration
+    $.USE_CDN = config.useCDN;
     $.BINANCE_LINK = config.binanceLink;
     $.DONATION_ADDRESS = config.donationAddress;
     $.DONATION_BTC = config.donationBTC;

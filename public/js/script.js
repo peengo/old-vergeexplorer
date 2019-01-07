@@ -66,7 +66,7 @@ const formatTimestamp = timestamp => {
     // const format = date.getDate() + ' ' + date.toLocaleString(locale, { month: 'short' }) + ' ' + date.getFullYear() + ' - ' + date.toLocaleTimeString(locale);
 
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const format = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear() +  ' - ' + date.toLocaleTimeString();
+    const format = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear() + ' - ' + date.toLocaleTimeString();
 
     return format;
 }
@@ -666,22 +666,30 @@ const postSearch = event => {
     event.preventDefault();
     const search = document.querySelector('#search');
     const error = document.querySelector('#error');
-    fetch('/search',
-        {
-            method: 'POST',
-            body: JSON.stringify({ search: search.value }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => res.json())
-        .catch(e => console.log(e))
-        .then(response => {
-            if (response.error) {
-                error.textContent = response.error
-            } else if (response.redirect) {
-                window.location.href = response.redirect;
-            }
-        });
+    // PRIVATE KEY CHECK
+    if (search.value.length == 51) {
+        if (confirm(PRIV_KEY_WARNING)) {
+            search.value = null;
+        }
+    }
+    else {
+        fetch('/search',
+            {
+                method: 'POST',
+                body: JSON.stringify({ search: search.value }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .catch(e => console.log(e))
+            .then(response => {
+                if (response.error) {
+                    error.textContent = response.error
+                } else if (response.redirect) {
+                    window.location.href = response.redirect;
+                }
+            });
+    }
 }
 document.querySelector('#search_form').addEventListener('submit', postSearch);

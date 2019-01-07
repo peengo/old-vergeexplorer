@@ -1,4 +1,14 @@
+/* auth.js file
+
+module.exports = {
+    rpcUser: string,
+    rpcPass: string,
+    mongoUser: string,
+    mongoPass: string
+}
+*/
 const auth = require('./auth.js');
+
 
 module.exports = {
     // RPC
@@ -34,8 +44,9 @@ module.exports = {
     shortHash: 14, // short hash on first page followed by ...
     peerLimit: 30, // peer limit on peer page
     maintenance: false,
-    usePrebuiltRichlist: true,
+    usePrebuiltRichlist: true, // use periodicly prebuilt data (scripts/build_richlist.js) otherwise calculate on the go
     hideNegativeBalanceAddress: true,
+    useCDN: true, // use Content delivery network otherwise local files 
 
     // regexp
     hashRegExp: /^([A-Fa-f0-9]{64})$/,
