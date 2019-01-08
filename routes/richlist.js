@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
         // const db = req.app.locals.db;
         // const addr = req.app.locals.addr;
 
-        // const addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(100).toArray();
+        // const addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(config.richlistLimit).toArray();
 
         // addresses.map((address, index) => {
         //     address.index = index + 1;

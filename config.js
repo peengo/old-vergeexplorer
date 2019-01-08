@@ -33,8 +33,6 @@ module.exports = {
     txs: 'txs', // transactions collections name
     addr: 'addr', // addresses collection name
     addr_txs: 'addr_txs', // address transactions collection name
-    info: 'info', // getinfo collection name
-    peers: 'peers', // peers collection name
     rich: 'richlist', // richlist collection name
     search: 'search', // search collection name
 
@@ -43,6 +41,7 @@ module.exports = {
     limit: 50, // pager limit
     shortHash: 14, // short hash on first page followed by ...
     peerLimit: 30, // peer limit on peer page
+    richlistLimit: 50,
     maintenance: false,
     usePrebuiltRichlist: true, // use periodicly prebuilt data (scripts/build_richlist.js) otherwise calculate on the go
     hideNegativeBalanceAddress: true,

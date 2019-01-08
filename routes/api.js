@@ -352,13 +352,13 @@ router.get('/richlist', async (req, res) => {
         } else {
             // BUILDING ON THE GO
             const addr = req.app.locals.addr;
-            addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(100).toArray();
+            addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(config.richlistLimit).toArray();
             addresses.map((address, index) => {
                 address.index = index + 1;
             });
         }
 
-        res.render('newrichlist', { addresses, layout: false });
+        res.render('richlist_part', { addresses, layout: false });
     } catch (e) {
         console.log(e)
     }
