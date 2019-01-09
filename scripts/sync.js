@@ -2,7 +2,7 @@
 
 const config = require('../config.js');
 const lib = require('../lib/lib.js');
-const cli = require('../lib/cli.js');
+// const cli = require('../lib/cli.js');
 const mongo = require('mongodb').MongoClient;
 const delay = require('delay');
 /*
