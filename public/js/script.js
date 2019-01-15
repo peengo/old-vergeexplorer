@@ -62,12 +62,8 @@ const formatTimeAgo = timestamp => {
 
 const formatTimestamp = timestamp => {
     const date = new Date(timestamp * 1000);
-    // const locale = 'en-US'
-    // const format = date.getDate() + ' ' + date.toLocaleString(locale, { month: 'short' }) + ' ' + date.getFullYear() + ' - ' + date.toLocaleTimeString(locale);
-
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const format = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear() + ' - ' + date.toLocaleTimeString();
-
     return format;
 }
 
@@ -192,10 +188,6 @@ const formatData = id => {
                     num = num.slice(0, -1);
                 }
 
-                /*
-                str = num + '<span class="text-light">' + rest + '</span>';
-                amount.innerHTML = str;
-                */
                 const span = document.createElement('span');
                 span.classList.add('text-light');
                 const restNode = document.createTextNode(rest);
@@ -227,15 +219,6 @@ const txId = '#tx';
 const addressId = '#address';
 const richlistId = '#richlist';
 const peersId = '#peers';
-
-// formatData(txsId);
-// formatData(txId);
-// formatData(addressId);
-// formatData(richlistId);
-// formatData(peersId);
-
-// Format data on other URIs
-//formatData('#block');
 
 const info = document.querySelector('#info');
 const index = document.querySelector('#index');
@@ -281,17 +264,6 @@ if (info) {
             } else {
                 sync = ((Math.floor(sync * 100) / 100)).toFixed(2);
             }
-            /*
-            if (Number.isInteger(sync)) {
-                sync = sync.toString();
-            } else {
-                sync = sync.toString().split('.');
-                const int = sync[0];
-                let dec = sync[1].substr(0, 2);
-                if (dec.length === 1) dec += '0';
-                sync = int + '.' + dec;
-            }
-            */
             synced.innerHTML = sync + '<small> %</small>';
 
             moneySupply.textContent = data.moneysupply;
@@ -308,9 +280,6 @@ if (info) {
             const percentage = XVGdata.data.quotes.USD.percent_change_24h;
             (percentage < 0) ? priceChange.classList.add('text-danger') : priceChange.classList.add('text-success');
 
-            /*
-            priceChange.innerHTML = percentage + '<small> %</small>';
-            */
             const small = document.createElement('small');
             const textNode = document.createTextNode(' %');
             small.appendChild(textNode);
@@ -439,7 +408,6 @@ if (block) {
     }, false);
     // AJAX - GET BLOCK TRANSACTIONS
     const getBlockTxs = () => {
-        // if (event) event.preventDefault();
         if (document.querySelector('#block_txs')) {
             const loading = document.querySelector('#block_txs_loading').classList;
             loading.remove('d-none');
@@ -476,7 +444,6 @@ if (tx) {
     formatData(txId);
     // AJAX - GET INPUT ADDRESSES
     const getInputs = () => {
-        // if (event) event.preventDefault();
         if (document.querySelector('#tx_inputs')) {
             const loading = document.querySelector('#tx_inputs_loading').classList;
             loading.remove('d-none');
@@ -509,7 +476,6 @@ if (tx) {
 
     // AJAX - GET RECIPIENTS
     const getRecipients = event => {
-        // if (event) event.preventDefault();
         if (document.querySelector('#tx_recipients')) {
             const loading = document.querySelector('#tx_recipients_loading').classList;
             loading.remove('d-none');
@@ -546,7 +512,6 @@ if (address) {
     formatData(addressId)
     // AJAX - GET ADDRESS TRANSACTIONS
     const getAddressTxs = (event, refresh) => {
-        // if (event) event.preventDefault();
         if (document.querySelector('#address_txs')) {
             const loading = document.querySelector('#address_txs_loading').classList;
             loading.remove('d-none');

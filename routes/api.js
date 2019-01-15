@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-
 const config = require('./../config.js');
 const lib = require('./../lib/lib.js');
-
 const Decimal = require('decimal.js-light');
+
 Decimal.set({
     precision: config.precision,
     toExpNeg: config.toExpNeg,
@@ -13,11 +12,6 @@ Decimal.set({
 // JSON INFO
 router.get('/info', async (req, res, next) => {
     try {
-        // OLD db
-        //const info = req.app.locals.info;
-        //let getInfo = await info.findOne();
-
-        // NEW rpc
         const rpc = req.app.locals.rpc;
         let getInfo = await rpc.getInfo();
 
@@ -50,24 +44,6 @@ router.get('/block/:hash', async (req, res) => {
             res.json({ err: $.NOT_VALID_HASH });
         }
 
-        // from db + rpc
-        /*
-        const blocks = req.app.locals.blocks;
-        //const count = await blocks.count();
-        const block = await blocks.findOne({ hash: hash });
-
-        if (block === null) {
-            res.json({ err: $.BLOCK_NOT_FOUND });
-        }
-
-        delete block._id;
-        // OLD DB
-        //block.confirmations = lib.getCalculatedConfirmations(count, block.height);
-        // NEW rpc
-        const blockRpc = await rpc.getBlock(block.hash);
-        block.confirmations = blockRpc.confirmations;
-        */
-
         const block = await rpc.getBlock(hash);
 
         res.json(block);
@@ -97,9 +73,7 @@ router.get('/tx/:txid', async (req, res) => {
             res.json({ err: $.TX_NOT_FOUND });
         }
         delete tx._id;
-        // OLD db
-        //tx.confirmations = lib.getCalculatedConfirmations(count, tx.height);
-        // NEW rpc
+
         const blockRpc = await rpc.getBlock(tx.blockhash);
         tx.confirmations = blockRpc.confirmations;
 
@@ -122,22 +96,6 @@ router.get('/confirmations/:hash', async (req, res) => {
         }
 
         const block = await rpc.getBlock(hash);
-
-        /*
-        const blocks = req.app.locals.blocks;
-        const count = await blocks.count();
-        const block = await blocks.findOne({ hash: hash });
-
-        if (block === null) {
-            res.json({ err: $.BLOCK_NOT_FOUND });
-        }
-
-        // OLD db
-        //block.confirmations = lib.getCalculatedConfirmations(count, block.height);
-        // NEW rpc
-        const blockRpc = await rpc.getBlock(block.hash);
-        block.confirmations = blockRpc.confirmations;
-        */
 
         res.json({ confirmations: block.confirmations });
     } catch (e) {
@@ -336,9 +294,6 @@ router.get('/address/txs/:address/:rows', async (req, res) => {
 // HTML RICHLIST
 router.get('/richlist', async (req, res) => {
     try {
-        //const addr = req.app.locals.addr;
-        // const info = req.app.locals.info;
-
         const db = req.app.locals.db;
 
         let addresses = [];

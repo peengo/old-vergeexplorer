@@ -15,12 +15,7 @@ Decimal.set({
         const client = await mongo.connect(config.mongoURL);
         console.log('MongoDB connected');
         const db = client.db(config.db);
-        // const blocks = db.collection(config.blocks);
-        // const txs = db.collection(config.txs);
-        // const addr = db.collection(config.addr);
         const addr_txs = db.collection(config.addr_txs);
-
-        // 2384896
 
         let address = null;
 

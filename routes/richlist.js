@@ -5,21 +5,8 @@ const config = require('./../config.js');
 
 router.get('/', async (req, res, next) => {
     try {
-        //const addr = req.app.locals.addr;
-        //const info = req.app.locals.info;
-        //const getInfo = await info.findOne();
-
         const rpc = req.app.locals.rpc;
         let getInfo = await rpc.getInfo();
-
-        // const db = req.app.locals.db;
-        // const addr = req.app.locals.addr;
-
-        // const addresses = await addr.find().sort({ balance: -1 }).collation({ locale: "en_US", numericOrdering: true }).limit(config.richlistLimit).toArray();
-
-        // addresses.map((address, index) => {
-        //     address.index = index + 1;
-        // });
 
         let timestamp = null;
 
@@ -29,14 +16,13 @@ router.get('/', async (req, res, next) => {
             (richlist[0] === undefined) ? timestamp = null : timestamp = richlist[0].timestamp;
         }
 
-        res.render('richlist', { /*addresses,*/ getInfo, timestamp });
+        res.render('richlist', { getInfo, timestamp });
     } catch (e) {
         console.log(e)
 
         const $ = req.app.locals.$;
         const error = new Error($.ERROR);
         next(error);
-        //res.status(500).send($.ERROR);
     }
 });
 

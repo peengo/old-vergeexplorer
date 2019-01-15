@@ -1,21 +1,15 @@
+const config = require('./config.js');
+
 const compression = require('compression');
 const helmet = require('helmet');
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-
 const i18n = require('i18n-express');
-
-// APP
-const config = require('./config.js');
-
-// DB
 const mongo = require('mongodb').MongoClient;
-
-// RPC
 const BitcoinRpc = require('bitcoin-rpc-promise');
+
 let rpc = new BitcoinRpc(config.rpcURL);
 
 const app = express();
@@ -31,18 +25,6 @@ app.use(i18n({
     defaultLang: 'en',
     textsVarName: '$'
 }));
-
-// Daemon Test
-/*
-const daemonConnect = async () => {
-    try {
-        await rpc.getInfo();
-    } catch (e) {
-        daemonErr = false;
-        console.log(e);
-    }
-}
-*/
 
 // MongoDB Connection
 (async () => {
@@ -82,8 +64,6 @@ app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ROUTES
-
 app.use(async (req, res, next) => {
     const $ = req.app.locals.$;
     // set config vars for every view inside language integration
@@ -98,17 +78,9 @@ app.use(async (req, res, next) => {
     } else {
         next();
     }
-    // rpc check
-    /*
-    try {
-        await rpc.getInfo();
-    } catch (e) {
-        res.status(500).send($.RPC_ERR);
-        console.log(e)
-    }
-    */
 });
 
+// ROUTES
 app.use('/', require('./routes/index'));
 app.use('/search', require('./routes/search'));
 app.use('/block', require('./routes/block'));

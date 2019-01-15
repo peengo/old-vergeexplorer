@@ -9,7 +9,6 @@ module.exports = {
 */
 const auth = require('./auth.js');
 
-
 module.exports = {
     // RPC
     rpcUser: auth.rpcUser,
@@ -40,9 +39,9 @@ module.exports = {
     latest: 10, // latest 10 blocks / txs on homepage
     limit: 50, // pager limit
     shortHash: 14, // short hash on first page followed by ...
-    peerLimit: 30, // peer limit on peer page
-    richlistLimit: 50,
-    maintenance: false,
+    peerLimit: 30, // peer entries limit on peer page
+    richlistLimit: 50, // richlist entries limit on richlist page
+    maintenance: false, // website maintenance mode
     usePrebuiltRichlist: true, // use periodicly prebuilt data (scripts/build_richlist.js) otherwise calculate on the go
     hideNegativeBalanceAddress: true,
     useCDN: true, // use Content delivery network otherwise local files 

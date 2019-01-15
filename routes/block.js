@@ -15,45 +15,14 @@ router.get('/:hash', async (req, res, next) => {
 			return;
 		}
 
-		// from db + rpc combined
-		/*
-		const blocks = req.app.locals.blocks;
-
-		//const count = await blocks.count();
-		const block = await blocks.findOne({ hash: hash });
-
-		if (block === null) {
-			res.render('index', { err: $.BLOCK_NOT_FOUND });
-			return;
-		}
-
-		delete block._id;
-
-		// OLD DB
-		//block.confirmations = lib.getCalculatedConfirmations(count, block.height);
-		// NEW rpc
-		const blockRpc = await rpc.getBlock(block.hash);
-
-		block.confirmations = blockRpc.confirmations;
-		*/
-
-		// NEW from rpc only
 		const block = await rpc.getBlock(hash);
 
 		res.render('block', { block });
 	} catch (e) {
 		console.log(e);
-		
-		/*
-		const $ = req.app.locals.$;
-        const error = new Error($.ERROR);
-		next(error);
-		*/
 
 		const $ = req.app.locals.$;
 		res.render('index', { err: $.BLOCK_NOT_FOUND });
-		
-		//res.status(500).send($.ERROR);
 	}
 });
 
