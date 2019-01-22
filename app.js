@@ -7,6 +7,9 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const i18n = require('i18n-express');
+const fs = require("fs");
+const { promisify } = require("util");
+const uglify = require("uglify-es");
 const mongo = require('mongodb').MongoClient;
 const BitcoinRpc = require('bitcoin-rpc-promise');
 
@@ -63,6 +66,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Minify
+const readFile = promisify(fs.readFile);
+const writeFile = promisify(fs.writeFile);
+
+(async () => {
+    try {
+        console.log('Minifying script.js');
+        const src = await readFile(path.join(__dirname, '/public/js/script.js'), 'utf8');
+        const min = uglify.minify(src);
+        
+        if (min.error) {
+            console.log(min.error);
+        }
+        
+        await writeFile(path.join(__dirname, '/public/js/script.min.js'), min.code);
+    } catch (e) {
+        console.log(e);
+    }
+})();
 
 app.use(async (req, res, next) => {
     const $ = req.app.locals.$;
