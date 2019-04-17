@@ -25,7 +25,7 @@ module.exports = {
     mongoHost: 'localhost',
     mongoPort: '27017',
     get mongoURL() {
-        return 'mongodb://' + this.mongoUser + ':' + this.mongoPass + '@' + this.mongoHost + ':' + this.mongoPort;
+        return 'mongodb://' + this.mongoUser + ':' + this.mongoPass + '@' + this.mongoHost + ':' + this.mongoPort + '/' + this.db;
     },
     db: 'blockchain', // database name
     blocks: 'blocks', // blocks collection name
@@ -42,7 +42,7 @@ module.exports = {
     peerLimit: 30, // peer entries limit on peer page
     richlistLimit: 50, // richlist entries limit on richlist page
     maintenance: false, // website maintenance mode
-    usePrebuiltRichlist: true, // use periodicly prebuilt data (scripts/build_richlist.js) otherwise calculate on the go
+    usePrebuiltRichlist: false, // use periodicly prebuilt data (scripts/build_richlist.js) otherwise calculate on the go
     hideNegativeBalanceAddress: true,
     useCDN: true, // use Content delivery network otherwise local files 
 
